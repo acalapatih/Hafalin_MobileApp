@@ -1,0 +1,110 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.acalapatih.oneayat'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.acalapatih.oneayat"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/DEPENDENCIES'
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //Android Material
+    implementation 'com.google.android.material:material:1.10.0' // Sesuaikan versi dengan yang Anda gunakan
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
+    //Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.6.2"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.2"
+
+    //DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1"
+
+    //Refresh Swipe Layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
+
+    //Android Ktx
+    implementation "androidx.activity:activity-ktx:1.8.0"
+    implementation "androidx.fragment:fragment-ktx:1.6.2"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.7.5"
+    implementation 'androidx.navigation:navigation-fragment:2.7.5'
+    implementation "androidx.navigation:navigation-ui-ktx:2.7.5"
+
+    //ViewPager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    //Retrofit
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    //Logging Interceptor
+    def okhttp_version = "4.10.0"
+    //noinspection GradleDependency
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //Gson
+    implementation "com.google.code.gson:gson:2.10.1"
+
+    //Koin
+    implementation "io.insert-koin:koin-core:3.3.2"
+    implementation "io.insert-koin:koin-android:3.3.2"
+
+    //Room
+    implementation 'androidx.room:room-runtime:2.6.1'
+    kapt 'androidx.room:room-compiler:2.6.1'
+
+    implementation 'org.apache.commons:commons-text:1.9'
+
+    implementation 'com.google.cloud:google-cloud-speech:2.6.0'
+}
