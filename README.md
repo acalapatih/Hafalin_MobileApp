@@ -109,7 +109,7 @@ OneAyat applies Speech To Text technology with the One Day One Ayat Method to fa
 [stars-url]: https://github.com/acalapatih/OneAyat_mobileApp/stargazers
 [issues-shield]: https://img.shields.io/github/issues/acalapatih/OneAyat_mobileApp.svg?style=for-the-badge
 [issues-url]: https://github.com/acalapatih/OneAyat_mobileApp/issues
-[license-shield]: https://img.shields.io/github/license/acalapatih/OneAyat_mobileApp.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/acalapatih/MobilePQI_mobileApp.svg?style=for-the-badge
 [license-url]: https://github.com/acalapatih/OneAyat_mobileApp/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/amir-acalapati-henry
