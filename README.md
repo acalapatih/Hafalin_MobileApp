@@ -104,11 +104,11 @@ OneAyat applies Speech To Text technology with the One Day One Ayat Method to fa
 [contributors-shield]: https://img.shields.io/github/contributors/acalapatih/OneAyat_mobileApp.svg?style=for-the-badge
 [contributors-url]: https://github.com/acalapatih/OneAyat_mobileApp/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/acalapatih/OneAyat_mobileApp.svg?style=for-the-badge
-[forks-url]: https://github.com//acalapatih/OneAyat_mobileApp/network/members
+[forks-url]:https://github.com/acalapatih/OneAyat_mobileApp/network/members
 [stars-shield]: https://img.shields.io/github/stars/acalapatih/OneAyat_mobileApp.svg?style=for-the-badge
-[stars-url]: https://github.com//acalapatih/OneAyat_mobileApp/stargazers
+[stars-url]: https://github.com/acalapatih/OneAyat_mobileApp/stargazers
 [issues-shield]: https://img.shields.io/github/issues/acalapatih/OneAyat_mobileApp.svg?style=for-the-badge
-[issues-url]: https://github.com//acalapatih/OneAyat_mobileApp/issues
+[issues-url]: https://github.com/acalapatih/OneAyat_mobileApp/issues
 [license-shield]: https://img.shields.io/github/license/acalapatih/OneAyat_mobileApp.svg?style=for-the-badge
 [license-url]: https://github.com/acalapatih/OneAyat_mobileApp/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
