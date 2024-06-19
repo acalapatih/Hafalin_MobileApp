@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,7 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
     private lateinit var listSuratAdapter: HafalanQuranAdapter
     private lateinit var pendingIntent: PendingIntent
     private lateinit var alarmManager: AlarmManager
+    private var lastNotificationTime: Long = 0
 
     override fun getViewBinding(): ActivityHafalanQuranBinding =
         ActivityHafalanQuranBinding.inflate(layoutInflater)
@@ -61,6 +63,7 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun initObserver() {
         viewModel.getListSurah.observe(this) { model ->
             when (model) {
@@ -82,6 +85,12 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
                         )
                     }
                 }
+            }
+        }
+
+        viewModel.ayatDihafal.observe(this) { ayatDihafal ->
+            if (ayatDihafal == null) {
+                requestNotificationPermission()
             }
         }
     }
@@ -126,12 +135,7 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
                 if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
                     showDialogAturNotifikasi { hour, minute ->
                         notificationChannel()
-                        pendingIntent = PendingIntent.getBroadcast(
-                            applicationContext, 0,
-                            Intent(this, NotificationReceiver::class.java), PendingIntent.FLAG_IMMUTABLE
-                        )
-                        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-                        scheduleNotification(pendingIntent, hour, minute)
+                        scheduleNotification(hour, minute)
                     }
                 } else {
                     showToast(
@@ -159,37 +163,61 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun scheduleNotification(pendingIntent: PendingIntent, hour: Int, minute: Int) {
+    private fun scheduleNotification(hour: Int, minute: Int) {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, hour)
         calendar.set(Calendar.MINUTE, minute)
         calendar.set(Calendar.SECOND, 0)
 
+        // If the specified time has passed, schedule the notification for the next day
         if (calendar.timeInMillis <= System.currentTimeMillis()) {
             calendar.add(Calendar.DAY_OF_YEAR, 1)
         }
 
-        val triggerAtMillis = calendar.timeInMillis
+        // Calculate the time difference between now and the next notification time
+        val triggerAtMillis = calendar.timeInMillis - System.currentTimeMillis()
 
-        when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> {
-                alarmManager.setExactAndAllowWhileIdle(
-                    AlarmManager.RTC_WAKEUP,
-                    triggerAtMillis,
-                    pendingIntent
-                )
-            }
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT -> {
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    triggerAtMillis,
-                    pendingIntent
-                )
-            }
-            else -> {
-                alarmManager.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent)
-            }
+        // Schedule a repeating alarm for every 1 hour starting from the specified time
+        val intervalMillis = 24 * 60 * 60 * 1000L // 1 hour in milliseconds
+
+        // Calculate the next notification time based on the last notification time
+        val nextNotifyTime = if (lastNotificationTime == 0L) {
+            System.currentTimeMillis() + triggerAtMillis
+        } else {
+            lastNotificationTime + intervalMillis
         }
+        lastNotificationTime = nextNotifyTime
+
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        pendingIntent = PendingIntent.getBroadcast(
+            applicationContext, 0,
+            Intent(this, NotificationReceiver::class.java), PendingIntent.FLAG_IMMUTABLE
+        )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setRepeating(
+                AlarmManager.RTC_WAKEUP,
+                lastNotificationTime,
+                intervalMillis,
+                pendingIntent
+            )
+        } else {
+            alarmManager.setInexactRepeating(
+                AlarmManager.RTC_WAKEUP,
+                lastNotificationTime,
+                intervalMillis,
+                pendingIntent
+            )
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun rescheduleNotification(hour: Int, minute: Int) {
+        // Cancel the previous alarm
+        alarmManager.cancel(pendingIntent)
+
+        // Reschedule the notification with the new time
+        scheduleNotification(hour, minute)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

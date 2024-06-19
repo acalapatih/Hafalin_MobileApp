@@ -202,7 +202,7 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
     }
 
     override fun onUserClicked(nomorAyat: String, clicked: String) {
-        nomorSurat?.let { HafalanActivity.start(this@HafalanSuratActivity, it, nomorAyat) }
+        nomorSurat?.let { HafalanAyatActivity.start(this@HafalanSuratActivity, it, nomorAyat) }
     }
 
     companion object {

@@ -5,13 +5,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.AudioFormat
+import android.media.AudioRecord
 import android.media.MediaPlayer
+import android.media.MediaRecorder
 import android.os.Build
 import android.os.Bundle
-import android.speech.RecognitionListener
-import android.speech.RecognizerIntent
-import android.speech.SpeechRecognizer
-import android.util.Log
+import android.os.Environment
 import android.view.View
 import android.widget.Toast
 import androidx.activity.addCallback
@@ -25,26 +25,36 @@ import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.data.source.local.entity.*
 import com.acalapatih.oneayat.core.domain.model.hafalanquran.HafalanAyatModel
+import com.acalapatih.oneayat.core.domain.model.hafalanquran.SpeechToTextModel
 import com.acalapatih.oneayat.databinding.ActivityHafalanAyatBinding
 import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity
 import com.acalapatih.oneayat.ui.hafalanquran.viewmodel.HafalanAyatViewModel
-import com.acalapatih.oneayat.utils.Const
-import com.google.api.gax.rpc.ApiStreamObserver
-import com.google.cloud.speech.v1.*
-import com.google.protobuf.ByteString
+import com.acalapatih.oneayat.utils.Const.NOMOR_AYAT
+import com.acalapatih.oneayat.utils.Const.NOMOR_SURAT
+import com.acalapatih.oneayat.utils.Const.REQUEST_PERMISSION_CODE
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
 import org.apache.commons.text.similarity.JaroWinklerSimilarity
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.IOException
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
+class HafalanAyatWithAzure : BaseActivity<ActivityHafalanAyatBinding>() {
+
     private val viewModel by viewModel<HafalanAyatViewModel>()
-    private val nomorSurat by lazy { intent.getStringExtra(Const.NOMOR_SURAT) }
-    private val nomorAyat by lazy { intent.getStringExtra(Const.NOMOR_AYAT) }
+    private val nomorSurat by lazy { intent.getStringExtra(NOMOR_SURAT) }
+    private val nomorAyat by lazy { intent.getStringExtra(NOMOR_AYAT) }
     private lateinit var audioAyatPlayer: MediaPlayer
-    private lateinit var speechRecognizer: SpeechRecognizer
-    private lateinit var hasilText: String
+
+    private lateinit var audioFile: File
+
+    private val SAMPLE_RATE = 16000
+    private val CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO
+    private val AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT
+
+    private lateinit var audioRecord: AudioRecord
+    private var isRecording = false
 
     override fun getViewBinding(): ActivityHafalanAyatBinding =
         ActivityHafalanAyatBinding.inflate(layoutInflater)
@@ -71,8 +81,9 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
-            Const.REQUEST_PERMISSION_CODE -> {
+            REQUEST_PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                    binding.cvHasilHafalan.visibility = View.GONE
                     initObserver()
                     initListener()
                 } else {
@@ -95,8 +106,15 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
             arrayOf(
                 Manifest.permission.RECORD_AUDIO
             ),
-            Const.REQUEST_PERMISSION_CODE
+            REQUEST_PERMISSION_CODE
         )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getToken() {
+        if (viewModel.token.value?.isEmpty() == true) {
+            initObserver()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -141,7 +159,7 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                 cvAudioAyat.isVisible = true
                 tvAudioAyat.text = "${data.namaSurat} : ${data.nomorAyat}"
 
-                audioAyatPlayer = MediaPlayer.create(this@HafalanActivity, data.audioAyat.toUri())
+                audioAyatPlayer = MediaPlayer.create(this@HafalanAyatWithAzure, data.audioAyat.toUri())
                 audioAyatPlayer.start()
 
                 btnStop.setOnClickListener {
@@ -156,84 +174,114 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                 cvHasilHafalan.visibility = View.GONE
                 showDialogRekamSuara(
                     onClose = { binding.tvAyat.isVisible = true },
-                    onStartRecording = { startRecording(
+                    onStartRecording = { startRecording() },
+                    onStopRecording = { stopRecording() },
+                    onStopButtonClicked = { speechToTextProcess(
                         data.namaSurat,
                         data.nomorAyat,
-                        data.lafadzAyat) },
-                    onStopRecording = { stopRecording() },
-                    onStopButtonClicked = {  }
+                        data.lafadzAyat
+                    ) }
                 )
             }
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("MissingPermission")
-    private fun startRecording(namaSurat: String, nomorAyat: String, lafadzAyat: String) {
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
-        val speechRecognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ar-SA") // Bahasa Arab (Saudi Arabia)
+    @Suppress("DEPRECATION")
+    private fun startRecording() {
+        val bufferSize = AudioRecord.getMinBufferSize(SAMPLE_RATE, CHANNEL_CONFIG, AUDIO_FORMAT)
+        audioRecord = AudioRecord(
+            MediaRecorder.AudioSource.MIC,
+            SAMPLE_RATE,
+            CHANNEL_CONFIG,
+            AUDIO_FORMAT,
+            bufferSize
+        )
 
-        speechRecognizer.setRecognitionListener(object : RecognitionListener {
-            override fun onReadyForSpeech(params: Bundle?) {}
+        audioFile = createAudioFile()
 
-            override fun onBeginningOfSpeech() {}
+        val audioData = ByteArray(bufferSize)
+        val outputStream = FileOutputStream(audioFile)
 
-            override fun onRmsChanged(rmsdB: Float) {}
+        audioRecord.startRecording()
+        isRecording = true
 
-            override fun onBufferReceived(buffer: ByteArray?) {}
-
-            override fun onEndOfSpeech() {}
-
-            override fun onError(error: Int) {
-                Log.e("SpeechRecognition", "Error: $error")
-                Toast.makeText(this@HafalanActivity, "Terjadi Kesalahan, Silakan Coba Kembali", Toast.LENGTH_SHORT).show()
-                binding.tvAyat.visibility = View.VISIBLE
+        Thread {
+            while (isRecording) {
+                val bytesRead = audioRecord.read(audioData, 0, bufferSize)
+                outputStream.write(audioData, 0, bytesRead)
             }
 
-            override fun onResults(results: Bundle?) {
-                val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-                if (matches != null && matches.isNotEmpty()) {
-                    val recognizedText = matches[0]
-                    speechToTextResult(namaSurat, nomorAyat, lafadzAyat, recognizedText)
+            audioRecord.stop()
+            audioRecord.release()
+            outputStream.close()
+
+            val fileRequestBody = RequestBody.create("audio/wav".toMediaTypeOrNull(), audioFile)
+
+            viewModel.postSpeechToText(
+                fileRequestBody
+            )
+        }.start()
+    }
+
+    private fun createAudioFile(): File {
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_MUSIC)
+        return File.createTempFile(
+            "AUDIO_${nomorSurat}_${nomorAyat}",  /* prefix */
+            ".wav",         /* suffix */
+            storageDir      /* directory */
+        )
+    }
+
+    @Suppress("DEPRECATION")
+    private fun stopRecording() {
+        isRecording = false
+    }
+
+    private fun speechToTextProcess(namaSurat: String, nomorAyat: String, lafadzAyat: String) {
+        binding.tvAyat.isVisible = true
+        viewModel.postSpeechToText.observe(this) { model ->
+            when (model) {
+                is Resource.Loading -> {
+                    showLoading(true)
+                }
+                is Resource.Success -> {
+                    showLoading(false)
+                    model.data?.let { data ->
+                        println("Speech-to-Text Response ====== $data")
+                        postSpeechToText(namaSurat, nomorAyat, lafadzAyat, data)
+                    }
+                }
+                is Resource.Error -> {
+                    showLoading(false)
+                    model.message?.let {
+                        println(it)
+                        showToast(
+                            it, Toast.LENGTH_SHORT
+                        )
+                    }
                 }
             }
-
-            override fun onPartialResults(partialResults: Bundle?) {}
-
-            override fun onEvent(eventType: Int, params: Bundle?) {}
-        })
-
-        speechRecognizer.startListening(speechRecognizerIntent)
-    }
-
-    private fun stopRecording() {
-        speechRecognizer.stopListening()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (::speechRecognizer.isInitialized) {
-            speechRecognizer.destroy()
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun speechToTextResult(namaSurat: String, nomorAyat: String, lafadzAyat: String, textResult: String) {
+    private fun postSpeechToText(namaSurat: String, nomorAyat: String, lafadzAyat: String, data: SpeechToTextModel) {
         with(binding) {
             cvHasilHafalan.visibility = View.VISIBLE
-            tvAyat.isVisible = true
-            tvAyatKesalahan.text = textResult
+            tvAyatKesalahan.text = data.hasilText
 
             val jaroWinklerSimilarity = JaroWinklerSimilarity()
-            val similarity = jaroWinklerSimilarity.apply(lafadzAyat, textResult)
-            println("Jaro-Winkler Similarity: $similarity")
+            val similarity = jaroWinklerSimilarity.apply(lafadzAyat, data.hasilText)
+            println("SIMILARITY === $similarity")
 
             when(similarity) {
                 in 0.71..1.0 ->
                 {
                     tvPersentaseKemiripan.text = "${(similarity * 100).toInt()}"
                     tvPredikatHasil.text = "Sangat Baik"
-                    tvPredikatHasil.setTextColor(ContextCompat.getColor(this@HafalanActivity, R.color.green_9ACD32))
+                    tvPredikatHasil.setTextColor(ContextCompat.getColor(this@HafalanAyatWithAzure, R.color.green_9ACD32))
                     tvAyatSelanjutnya.isVisible = true
                     tvLetakKesalahan.isVisible = false
                     tvAyatKesalahan.isVisible = false
@@ -244,9 +292,8 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                         "Al-Falaq" -> checkAndInsertAlFalaq(namaSurat, nomorAyat.toInt())
                         "Al-Ikhlas" -> checkAndInsertAlIkhlas(namaSurat, nomorAyat.toInt())
                         "At-Takwir" -> checkAndInsertAtTakwir(namaSurat, nomorAyat.toInt())
-                        "An-Naba'" -> checkAndInsertAnNaba(namaSurat, nomorAyat.toInt())
+                        "An-Naba" -> checkAndInsertAnNaba(namaSurat, nomorAyat.toInt())
                         "Al-Mulk" -> checkAndInsertAlMulk(namaSurat, nomorAyat.toInt())
-                        "Al-Kahf" -> checkAndInsertAlKahfi(namaSurat, nomorAyat.toInt())
                     }
 
                     val ayatDihafal = nomorSurat?.let { AyatDihafal(1, it, namaSurat, nomorAyat, ambilWaktuHafalan()) }
@@ -257,14 +304,14 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                 in 0.41..0.7 -> {
                     tvPersentaseKemiripan.text = "${(similarity * 100).toInt()}"
                     tvPredikatHasil.text = "Cukup Baik"
-                    tvPredikatHasil.setTextColor(ContextCompat.getColor(this@HafalanActivity, R.color.orange_FF6900))
+                    tvPredikatHasil.setTextColor(ContextCompat.getColor(this@HafalanAyatWithAzure, R.color.orange_FF6900))
                     tvLetakKesalahan.visibility = View.VISIBLE
                     tvAyatKesalahan.visibility = View.VISIBLE
                 }
                 in 0.1..0.4 -> {
                     tvPersentaseKemiripan.text = "${(similarity * 100).toInt()}"
                     tvPredikatHasil.text = "Kurang Baik"
-                    tvPredikatHasil.setTextColor(ContextCompat.getColor(this@HafalanActivity, R.color.red_F44336))
+                    tvPredikatHasil.setTextColor(ContextCompat.getColor(this@HafalanAyatWithAzure, R.color.red_F44336))
                     tvLetakKesalahan.visibility = View.VISIBLE
                     tvAyatKesalahan.visibility = View.VISIBLE
                 }
@@ -307,11 +354,6 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
         viewModel.insertAlMulk(alMulk)
     }
 
-    private fun checkAndInsertAlKahfi(namaSurat: String, nomorAyat: Int) {
-        val alKahfi = AlKahfi(nomorAyat, namaSurat, nomorAyat, "dihafal")
-        viewModel.insertAlKahfi(alKahfi)
-    }
-
     @SuppressLint("SimpleDateFormat")
     private fun ambilWaktuHafalan(): String {
         val calendar = Calendar.getInstance()
@@ -338,7 +380,6 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
         return "$waktuString, $hariString, $tanggalString"
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun initListener() {
         with(binding) {
             icBack.setOnClickListener {
@@ -349,23 +390,23 @@ class HafalanActivity : BaseActivity<ActivityHafalanAyatBinding>() {
             }
 
             icBookmark.setOnClickListener {
-                BookmarkActivity.start(this@HafalanActivity)
+                BookmarkActivity.start(this@HafalanAyatWithAzure)
             }
             tvAyatSelanjutnya.setOnClickListener {
-                nomorSurat?.let { it1 ->
-                    start(this@HafalanActivity,
-                        it1, (nomorAyat?.toInt()?.plus(1)).toString())
+                val nomorAyatSelanjutnya = (nomorAyat?.toInt() ?: 0) + 1
+                nomorSurat?.let { nomorSurat ->
+                    start(this@HafalanAyatWithAzure,
+                        nomorSurat, nomorAyatSelanjutnya.toString())
                 }
-                finish()
             }
         }
     }
 
     companion object {
         fun start(context: Context, nomorSurat: String, nomorAyat: String) {
-            val starter = Intent(context, HafalanActivity::class.java)
-                .putExtra(Const.NOMOR_SURAT, nomorSurat)
-                .putExtra(Const.NOMOR_AYAT, nomorAyat)
+            val starter = Intent(context, HafalanAyatWithAzure::class.java)
+                .putExtra(NOMOR_SURAT, nomorSurat)
+                .putExtra(NOMOR_AYAT, nomorAyat)
             context.startActivity(starter)
         }
     }

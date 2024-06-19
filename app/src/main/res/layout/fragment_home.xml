@@ -7,109 +7,130 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv_salam"
-        style="@style/tv_regular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/tv_salam"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@id/tv_selamat_datang"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_selamat_datang"
-        style="@style/tv_bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_selamat_datang"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@id/tv_salam"
-        app:layout_constraintTop_toBottomOf="@id/tv_salam" />
-
-    <TextView
-        android:id="@+id/tv_oneayat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="@string/tv_oneayat"
-        android:textColor="@color/yellow_FEC200"
-        app:layout_constraintBottom_toBottomOf="@id/tv_selamat_datang"
-        app:layout_constraintStart_toEndOf="@id/tv_selamat_datang"
-        app:layout_constraintTop_toTopOf="@id/tv_selamat_datang" />
-
     <androidx.cardview.widget.CardView
-        android:id="@+id/cv_banner"
+        android:id="@+id/cv_header_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_selamat_datang"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="30dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_banner_home">
+            android:background="@drawable/bg_header_home">
 
             <TextView
-                android:id="@+id/tv_label_progres_hafalan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:text="@string/tv_label_progres_hafalan"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
-                style="@style/tv_semibold"
-                android:textSize="12sp"/>
-
-            <ImageView
-                android:id="@+id/ic_progres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_lancar"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/tv_label_progres_hafalan"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginVertical="10dp"
-                app:layout_constraintBottom_toTopOf="@id/tv_progres_hafalan"
-                android:contentDescription="@string/desc_ic_progres" />
-
-            <TextView
-                android:id="@+id/tv_progres_hafalan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tv_progres_hafalan"
+                android:id="@+id/tv_salam"
                 style="@style/tv_regular"
-                tools:textSize="12sp"
-                android:visibility="gone"
-                android:layout_marginBottom="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <TextView
-                android:id="@+id/tv_empty_progres_hafalan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Anda Belum Memulai Hafalan"
-                style="@style/tv_regular"
-                android:visibility="visible"
-                tools:textSize="12sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/tv_salam"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_selamat_datang"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_selamat_datang"
+                style="@style/tv_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_selamat_datang"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tv_salam"
+                app:layout_constraintTop_toBottomOf="@id/tv_salam" />
+
+            <TextView
+                android:id="@+id/tv_oneayat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="@string/tv_oneayat"
+                android:textColor="@color/yellow_FEC200"
+                app:layout_constraintBottom_toBottomOf="@id/tv_selamat_datang"
+                app:layout_constraintStart_toEndOf="@id/tv_selamat_datang"
+                app:layout_constraintTop_toTopOf="@id/tv_selamat_datang" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_selamat_datang">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_banner_home">
+
+                    <TextView
+                        android:id="@+id/tv_label_progres_hafalan"
+                        style="@style/tv_semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/tv_label_progres_hafalan"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ic_progres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:contentDescription="@string/desc_ic_progres"
+                        android:src="@drawable/ic_lancar"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toTopOf="@id/tv_progres_hafalan"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_label_progres_hafalan" />
+
+                    <TextView
+                        android:id="@+id/tv_progres_hafalan"
+                        style="@style/tv_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/tv_progres_hafalan"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_empty_progres_hafalan"
+                        style="@style/tv_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Anda Belum Memulai Hafalan"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:textSize="12sp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -119,19 +140,21 @@
         android:id="@+id/img_bacaquran"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/img_bacaquran_green"
-        app:layout_constraintStart_toStartOf="@id/cv_banner"
-        app:layout_constraintTop_toBottomOf="@id/cv_banner" />
+        app:layout_constraintStart_toStartOf="@id/cv_header_home"
+        app:layout_constraintTop_toBottomOf="@id/cv_header_home" />
 
     <ImageView
         android:id="@+id/img_hafalanquran"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
         android:src="@drawable/img_hafalanquran_green"
-        app:layout_constraintEnd_toEndOf="@id/cv_banner"
-        app:layout_constraintTop_toBottomOf="@id/cv_banner" />
+        app:layout_constraintEnd_toEndOf="@id/cv_header_home"
+        app:layout_constraintTop_toBottomOf="@id/cv_header_home" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_penanda"
@@ -148,9 +171,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_penanda"
+            style="@style/bg_penanda"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/bg_penanda">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_penanda"
@@ -177,9 +200,9 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_penanda">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/bg_widget"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/bg_widget">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/ic_terakhir_dibaca"
@@ -234,9 +257,9 @@
                 app:layout_constraintTop_toBottomOf="@id/cv_terakhir_dibaca">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/bg_widget"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/bg_widget">
+                    android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/ic_terakhir_dihafal"

@@ -20,6 +20,7 @@
     <string name="tv_label_ayat_favorit">Q.S Ali-Imran : 139</string>
     <string name="tv_back">Kembali</string>
     <string name="tv_surat">Al-Fatihah</string>
+    <string name="tv_setting">Pengaturan</string>
     <string name="tv_info_surat">Pembukaan | 7 Ayat</string>
     <string name="desc_ic_nomor">Nomor</string>
     <string name="tv_nomor">208</string>
@@ -78,4 +79,5 @@
     <string name="tv_detail_kuranglancar">(Menghafal 1 ayat dalam 1 - 3 hari)</string>
     <string name="tv_tidaklancar">Tidak Lancar</string>
     <string name="tv_detail_tidaklancar"><![CDATA[(Menghafal 1 ayat dalam > 3 hari)]]></string>
+    <string name="tv_nav_setting">Pengaturan</string>
 </resources>

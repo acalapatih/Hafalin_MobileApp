@@ -101,17 +101,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <ImageView
-        android:id="@+id/ic_notifikasi_pengingat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_notifikasi_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/desc_ic_notifikasi_pengingat" />
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"

@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -24,7 +26,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="MY_NOTIFICATION_ALARM" />
             </intent-filter>
         </receiver>
 
@@ -38,10 +40,10 @@
             android:name=".ui.bookmark.activity.BookmarkActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.hafalanquran.activity.HafalanActivity"
+            android:name=".ui.hafalanquran.activity.HafalanAyatActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.hafalanquran.activity.HafalanAyatActivity"
+            android:name=".ui.hafalanquran.activity.HafalanAyatWithAzure"
             android:exported="false" />
         <activity
             android:name=".ui.hafalanquran.activity.HafalanSuratActivity"

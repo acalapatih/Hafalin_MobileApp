@@ -23,4 +23,9 @@
         android:name="com.acalapatih.oneayat.ui.bookmark.fragment.BookmarkFragment"
         tools:layout="@layout/fragment_bookmark"/>
 
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:label="@string/tv_nav_setting"
+        android:name="com.acalapatih.oneayat.ui.setting.SettingFragment"
+        tools:layout="@layout/fragment_setting"/>
 </navigation>

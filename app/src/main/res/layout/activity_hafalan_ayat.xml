@@ -5,7 +5,7 @@
     style="@style/bg_primary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.hafalanquran.activity.HafalanAyatActivity">
+    tools:context=".ui.hafalanquran.activity.HafalanAyatWithAzure">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

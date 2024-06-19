@@ -40,23 +40,30 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
             "home" -> {
                 navController.navigate(R.id.navigation_home)
                 menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_selected_green)
-                binding.btnQuran.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green_DBEAC6))
-                binding.btnQuran.setMaxImageSize(80)
+                menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
                 menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
             }
             "quran" -> {
                 navController.navigate(R.id.navigation_quran)
                 menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
-                binding.btnQuran.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green_DBEAC6))
-                binding.btnQuran.setMaxImageSize(80)
+                menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran_selected)
                 menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
             }
-            else -> {
+            "penanda" -> {
                 navController.navigate(R.id.navigation_bookmark)
                 menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
-                binding.btnQuran.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.green_DBEAC6))
-                binding.btnQuran.setMaxImageSize(80)
+                menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
                 menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_selected_green)
+                menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
+            }
+            else -> {
+                navController.navigate(R.id.navigation_setting)
+                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
+                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting_selected)
             }
         }
 
@@ -64,33 +71,40 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
             when (item.itemId) {
                 R.id.navigation_home -> {
                     item.setIcon(R.drawable.ic_home_selected_green)
+                    menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
                     menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                    menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
                     navController.navigate(R.id.navigation_home)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_quran -> {
+                    item.setIcon(R.drawable.ic_quran_selected)
                     menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
                     menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                    menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
                     navController.navigate(R.id.navigation_quran)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_bookmark -> {
                     item.setIcon(R.drawable.ic_bookmark_selected_green)
                     menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                    menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
+                    menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
                     navController.navigate(R.id.navigation_bookmark)
+                    return@setOnItemSelectedListener true
+                }
+                R.id.navigation_setting -> {
+                    item.setIcon(R.drawable.ic_setting_selected)
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                    menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
+                    menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                    navController.navigate(R.id.navigation_setting)
                     return@setOnItemSelectedListener true
                 }
                 else -> {
                     return@setOnItemSelectedListener true
                 }
             }
-        }
-
-        binding.btnQuran.setOnClickListener {
-            menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
-            menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
-            navController.navigate(R.id.navigation_quran)
-            return@setOnClickListener
         }
     }
 
