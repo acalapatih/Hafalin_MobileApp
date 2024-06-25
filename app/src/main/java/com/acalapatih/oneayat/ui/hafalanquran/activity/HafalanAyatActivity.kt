@@ -267,7 +267,36 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                         "Al-Lahab" -> checkAndInsertAlLahab(namaSurat, nomorAyat.toInt())
                         "An-Nasr" -> checkAndInsertAnNasr(namaSurat, nomorAyat.toInt())
                         "Al-Kafirun" -> checkAndInsertAlKafirun(namaSurat, nomorAyat.toInt())
+                        "Al-Kausar" -> checkAndInsertAlKausar(namaSurat, nomorAyat.toInt())
+                        "Al-Ma'un" -> checkAndInsertAlMaun(namaSurat, nomorAyat.toInt())
+                        "Quraisy" -> checkAndInsertAlQuraisy(namaSurat, nomorAyat.toInt())
+                        "Al-Fil" -> checkAndInsertAlFil(namaSurat, nomorAyat.toInt())
+                        "Al-Humazah" -> checkAndInsertAlHumazah(namaSurat, nomorAyat.toInt())
+                        "Al-'Asr" -> checkAndInsertAlAsr(namaSurat, nomorAyat.toInt())
+                        "At-Takasur" -> checkAndInsertAtTakasur(namaSurat, nomorAyat.toInt())
+                        "Al-Qari'ah" -> checkAndInsertAlQariah(namaSurat, nomorAyat.toInt())
+                        "Al-'Adiyat" -> checkAndInsertAlAdiyat(namaSurat, nomorAyat.toInt())
+                        "Al-Zalzalah" -> checkAndInsertAlZalzalah(namaSurat, nomorAyat.toInt())
+                        "Al-Bayyinah" -> checkAndInsertAlBayyinah(namaSurat, nomorAyat.toInt())
+                        "Al-Qadr" -> checkAndInsertAlQadr(namaSurat, nomorAyat.toInt())
+                        "Al-'Alaq" -> checkAndInsertAlAlaq(namaSurat, nomorAyat.toInt())
+                        "At-Tin" -> checkAndInsertAtTin(namaSurat, nomorAyat.toInt())
+                        "Asy-Syarh" -> checkAndInsertAsySyarh(namaSurat, nomorAyat.toInt())
+                        "Ad-Duha" -> checkAndInsertAdDuha(namaSurat, nomorAyat.toInt())
+                        "Al-Lail" -> checkAndInsertAlLail(namaSurat, nomorAyat.toInt())
+                        "Asy-Syam" -> checkAndInsertAsySyam(namaSurat, nomorAyat.toInt())
+                        "Al-Balad" -> checkAndInsertAlBalad(namaSurat, nomorAyat.toInt())
+                        "Al-Fajr" -> checkAndInsertAlFajr(namaSurat, nomorAyat.toInt())
+                        "Al-Gasyiyah" -> checkAndInsertAlGasyiyah(namaSurat, nomorAyat.toInt())
+                        "Al-A'la" -> checkAndInsertAlAla(namaSurat, nomorAyat.toInt())
+                        "At-Tariq" -> checkAndInsertAtTariq(namaSurat, nomorAyat.toInt())
+                        "Al-Buruj" -> checkAndInsertAlBuruj(namaSurat, nomorAyat.toInt())
+                        "Al-Insyiqaq" -> checkAndInsertAlInsyiqaq(namaSurat, nomorAyat.toInt())
+                        "Al-Mutaffifin" -> checkAndInsertAlMutaffifin(namaSurat, nomorAyat.toInt())
+                        "Al-Infitar" -> checkAndInsertAlInfitar(namaSurat, nomorAyat.toInt())
                         "At-Takwir" -> checkAndInsertAtTakwir(namaSurat, nomorAyat.toInt())
+                        "'Abasa" -> checkAndInsertAbasa(namaSurat, nomorAyat.toInt())
+                        "An-Nazi'at" -> checkAndInsertAnNaziat(namaSurat, nomorAyat.toInt())
                         "An-Naba'" -> checkAndInsertAnNaba(namaSurat, nomorAyat.toInt())
                         "Al-Mulk" -> checkAndInsertAlMulk(namaSurat, nomorAyat.toInt())
                     }
@@ -332,9 +361,154 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
         viewModel.insertAlKafirun(alKafirun)
     }
 
+    private fun checkAndInsertAlKausar(namaSurat: String, nomorAyat: Int) {
+        val alKausar = AlKausar(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlKausar(alKausar)
+    }
+
+    private fun checkAndInsertAlMaun(namaSurat: String, nomorAyat: Int) {
+        val alMaun = AlMaun(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlMaun(alMaun)
+    }
+
+    private fun checkAndInsertAlQuraisy(namaSurat: String, nomorAyat: Int) {
+        val alQuraisy = AlQuraisy(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlQuraisy(alQuraisy)
+    }
+
+    private fun checkAndInsertAlFil(namaSurat: String, nomorAyat: Int) {
+        val alFil = AlFil(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlFil(alFil)
+    }
+
+    private fun checkAndInsertAlHumazah(namaSurat: String, nomorAyat: Int) {
+        val alHumazah = AlHumazah(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlHumazah(alHumazah)
+    }
+
+    private fun checkAndInsertAlAsr(namaSurat: String, nomorAyat: Int) {
+        val alAsr = AlAsr(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlAsr(alAsr)
+    }
+
+    private fun checkAndInsertAtTakasur(namaSurat: String, nomorAyat: Int) {
+        val atTakasur = AtTakasur(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAtTakasur(atTakasur)
+    }
+
+    private fun checkAndInsertAlQariah(namaSurat: String, nomorAyat: Int) {
+        val alQariah = AlQariah(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlQariah(alQariah)
+    }
+
+    private fun checkAndInsertAlAdiyat(namaSurat: String, nomorAyat: Int) {
+        val alAdiyat = AlAdiyat(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlAdiyat(alAdiyat)
+    }
+
+    private fun checkAndInsertAlZalzalah(namaSurat: String, nomorAyat: Int) {
+        val alZalzalah = AlZalzalah(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlZalzalah(alZalzalah)
+    }
+
+    private fun checkAndInsertAlBayyinah(namaSurat: String, nomorAyat: Int) {
+        val alBayyinah = AlBayyinah(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlBayyinah(alBayyinah)
+    }
+
+    private fun checkAndInsertAlQadr(namaSurat: String, nomorAyat: Int) {
+        val alQadr = AlQadr(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlQadr(alQadr)
+    }
+
+    private fun checkAndInsertAlAlaq(namaSurat: String, nomorAyat: Int) {
+        val alAlaq = AlAlaq(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlAlaq(alAlaq)
+    }
+
+    private fun checkAndInsertAtTin(namaSurat: String, nomorAyat: Int) {
+        val atTin = AtTin(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAtTin(atTin)
+    }
+
+    private fun checkAndInsertAsySyarh(namaSurat: String, nomorAyat: Int) {
+        val asySyarh = AsySyarh(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAsySyarh(asySyarh)
+    }
+
+    private fun checkAndInsertAdDuha(namaSurat: String, nomorAyat: Int) {
+        val adDuha = AdDuha(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAdDuha(adDuha)
+    }
+
+    private fun checkAndInsertAlLail(namaSurat: String, nomorAyat: Int) {
+        val alLail = AlLail(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlLail(alLail)
+    }
+
+    private fun checkAndInsertAsySyam(namaSurat: String, nomorAyat: Int) {
+        val asySyam = AsySyam(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAsySyam(asySyam)
+    }
+
+    private fun checkAndInsertAlBalad(namaSurat: String, nomorAyat: Int) {
+        val alBalad = AlBalad(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlBalad(alBalad)
+    }
+
+    private fun checkAndInsertAlFajr(namaSurat: String, nomorAyat: Int) {
+        val alFajr = AlFajr(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlFajr(alFajr)
+    }
+
+    private fun checkAndInsertAlGasyiyah(namaSurat: String, nomorAyat: Int) {
+        val alGasyiyah = AlGasyiyah(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlGasyiyah(alGasyiyah)
+    }
+
+    private fun checkAndInsertAlAla(namaSurat: String, nomorAyat: Int) {
+        val alAla = AlAla(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlAla(alAla)
+    }
+
+    private fun checkAndInsertAtTariq(namaSurat: String, nomorAyat: Int) {
+        val atTariq = AtTariq(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAtTariq(atTariq)
+    }
+
+    private fun checkAndInsertAlBuruj(namaSurat: String, nomorAyat: Int) {
+        val alBuruj = AlBuruj(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlBuruj(alBuruj)
+    }
+
+    private fun checkAndInsertAlInsyiqaq(namaSurat: String, nomorAyat: Int) {
+        val alInsyiqaq = AlInsyiqaq(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlInsyiqaq(alInsyiqaq)
+    }
+
+    private fun checkAndInsertAlMutaffifin(namaSurat: String, nomorAyat: Int) {
+        val alMutaffifin = AlMutaffifin(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlMutaffifin(alMutaffifin)
+    }
+
+    private fun checkAndInsertAlInfitar(namaSurat: String, nomorAyat: Int) {
+        val alInfitar = AlInfitar(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlInfitar(alInfitar)
+    }
+
     private fun checkAndInsertAtTakwir(namaSurat: String, nomorAyat: Int) {
         val atTakwir = AtTakwir(nomorAyat, namaSurat, nomorAyat, "dihafal")
         viewModel.insertAtTakwir(atTakwir)
+    }
+
+    private fun checkAndInsertAbasa(namaSurat: String, nomorAyat: Int) {
+        val abasa = Abasa(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAbasa(abasa)
+    }
+
+    private fun checkAndInsertAnNaziat(namaSurat: String, nomorAyat: Int) {
+        val anNaziat = AnNaziat(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAnNaziat(anNaziat)
     }
 
     private fun checkAndInsertAnNaba(namaSurat: String, nomorAyat: Int) {

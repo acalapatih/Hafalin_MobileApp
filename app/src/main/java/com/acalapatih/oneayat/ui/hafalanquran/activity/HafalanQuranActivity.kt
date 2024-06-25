@@ -32,6 +32,7 @@ import com.acalapatih.oneayat.utils.NotificationReceiver
 import com.acalapatih.oneayat.ui.hafalanquran.adapter.HafalanQuranAdapter
 import com.acalapatih.oneayat.ui.hafalanquran.viewmodel.HafalanQuranViewModel
 import com.acalapatih.oneayat.ui.setting.SettingViewModel
+import com.acalapatih.oneayat.utils.Const
 import com.acalapatih.oneayat.utils.Const.REQUEST_PERMISSION_CODE
 import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -67,6 +68,49 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
             setLayoutManager(layoutManager)
             addItemDecoration(itemDecoration)
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                    showToast(
+                        "Anda Belum Memulai Hafalan, Silakan Atur Jadwal Hafalan",
+                        Toast.LENGTH_SHORT
+                    )
+                    showDialogAturNotifikasi { hour, minute ->
+                        notificationChannel()
+                        scheduleNotification(hour, minute)
+                    }
+                } else {
+                    showToast(
+                        this.getString(R.string.toast_permission),
+                        Toast.LENGTH_SHORT
+                    )
+                    onBackPressedDispatcher.onBackPressed()
+                    onBackPressedDispatcher.addCallback {
+                        finish()
+                    }
+                }
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun requestNotificationPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                Manifest.permission.POST_NOTIFICATIONS
+            ),
+            REQUEST_PERMISSION_CODE
+        )
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -124,48 +168,12 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
                 BookmarkActivity.start(this@HafalanQuranActivity)
             }
             icNotifikasiPengingat.setOnClickListener {
-                requestNotificationPermission()
-            }
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
-                    showDialogAturNotifikasi { hour, minute ->
-                        notificationChannel()
-                        scheduleNotification(hour, minute)
-                    }
-                } else {
-                    showToast(
-                        this.getString(R.string.toast_permission),
-                        Toast.LENGTH_SHORT
-                    )
-                    onBackPressedDispatcher.onBackPressed()
-                    onBackPressedDispatcher.addCallback {
-                        finish()
-                    }
+                showDialogAturNotifikasi { hour, minute ->
+                    notificationChannel()
+                    scheduleNotification(hour, minute)
                 }
             }
         }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    private fun requestNotificationPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(
-                Manifest.permission.POST_NOTIFICATIONS
-            ),
-            REQUEST_PERMISSION_CODE
-        )
     }
 
     @RequiresApi(Build.VERSION_CODES.M)

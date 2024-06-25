@@ -87,8 +87,124 @@ class HafalanAyatViewModel(
         suratDihafalRepository.insertAlKafirun(alKafirun)
     }
 
+    fun insertAlKausar(alKausar: AlKausar) {
+        suratDihafalRepository.insertAlKausar(alKausar)
+    }
+
+    fun insertAlMaun(alMaun: AlMaun) {
+        suratDihafalRepository.insertAlMaun(alMaun)
+    }
+
+    fun insertAlQuraisy(alQuraisy: AlQuraisy) {
+        suratDihafalRepository.insertAlQuraisy(alQuraisy)
+    }
+
+    fun insertAlFil(alFil: AlFil) {
+        suratDihafalRepository.insertAlFil(alFil)
+    }
+
+    fun insertAlHumazah(alHumazah: AlHumazah) {
+        suratDihafalRepository.insertAlHumazah(alHumazah)
+    }
+
+    fun insertAlAsr(alAsr: AlAsr) {
+        suratDihafalRepository.insertAlAsr(alAsr)
+    }
+
+    fun insertAtTakasur(atTakasur: AtTakasur) {
+        suratDihafalRepository.insertAtTakasur(atTakasur)
+    }
+
+    fun insertAlQariah(alQariah: AlQariah) {
+        suratDihafalRepository.insertAlQariah(alQariah)
+    }
+
+    fun insertAlAdiyat(alAdiyat: AlAdiyat) {
+        suratDihafalRepository.insertAlAdiyat(alAdiyat)
+    }
+
+    fun insertAlZalzalah(alZalzalah: AlZalzalah) {
+        suratDihafalRepository.insertAlZalzalah(alZalzalah)
+    }
+
+    fun insertAlBayyinah(alBayyinah: AlBayyinah) {
+        suratDihafalRepository.insertAlBayyinah(alBayyinah)
+    }
+
+    fun insertAlQadr(alQadr: AlQadr) {
+        suratDihafalRepository.insertAlQadr(alQadr)
+    }
+
+    fun insertAlAlaq(alAlaq: AlAlaq) {
+        suratDihafalRepository.insertAlAlaq(alAlaq)
+    }
+
+    fun insertAtTin(atTin: AtTin) {
+        suratDihafalRepository.insertAtTin(atTin)
+    }
+
+    fun insertAsySyarh(asySyarh: AsySyarh) {
+        suratDihafalRepository.insertAsySyarh(asySyarh)
+    }
+
+    fun insertAdDuha(adDuha: AdDuha) {
+        suratDihafalRepository.insertAdDuha(adDuha)
+    }
+
+    fun insertAlLail(alLail: AlLail) {
+        suratDihafalRepository.insertAlLail(alLail)
+    }
+
+    fun insertAsySyam(asySyam: AsySyam) {
+        suratDihafalRepository.insertAsySyam(asySyam)
+    }
+
+    fun insertAlBalad(alBalad: AlBalad) {
+        suratDihafalRepository.insertAlBalad(alBalad)
+    }
+
+    fun insertAlFajr(alFajr: AlFajr) {
+        suratDihafalRepository.insertAlFajr(alFajr)
+    }
+
+    fun insertAlGasyiyah(alGasyiyah: AlGasyiyah) {
+        suratDihafalRepository.insertAlGasyiyah(alGasyiyah)
+    }
+
+    fun insertAlAla(alAla: AlAla) {
+        suratDihafalRepository.insertAlAla(alAla)
+    }
+
+    fun insertAtTariq(atTariq: AtTariq) {
+        suratDihafalRepository.insertAtTariq(atTariq)
+    }
+
+    fun insertAlBuruj(alBuruj: AlBuruj) {
+        suratDihafalRepository.insertAlBuruj(alBuruj)
+    }
+
+    fun insertAlInsyiqaq(alInsyiqaq: AlInsyiqaq) {
+        suratDihafalRepository.insertAlInsyiqaq(alInsyiqaq)
+    }
+
+    fun insertAlMutaffifin(alMutaffifin: AlMutaffifin) {
+        suratDihafalRepository.insertAlMutaffifin(alMutaffifin)
+    }
+
+    fun insertAlInfitar(alInfitar: AlInfitar) {
+        suratDihafalRepository.insertAlInfitar(alInfitar)
+    }
+
     fun insertAtTakwir(atTakwir: AtTakwir) {
         suratDihafalRepository.insertAtTakwir(atTakwir)
+    }
+
+    fun insertAbasa(abasa: Abasa) {
+        suratDihafalRepository.insertAbasa(abasa)
+    }
+
+    fun insertAnNaziat(anNaziat: AnNaziat) {
+        suratDihafalRepository.insertAnNaziat(anNaziat)
     }
 
     fun insertAnNaba(anNaba: AnNaba) {

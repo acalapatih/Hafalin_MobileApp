@@ -144,7 +144,7 @@ val viewModelModule = module {
     viewModel { BacaSuratViewModel(get(), get(), get()) }
     viewModel { BacaJuzViewModel(get(), get(), get()) }
     viewModel { HafalanQuranViewModel(get(), get()) }
-    viewModel { HafalanSuratViewModel(get(), get(), get()) }
+    viewModel { HafalanSuratViewModel(get(), get()) }
     viewModel { HafalanAyatViewModel(get(), get(), get()) }
     viewModel { BookmarkViewModel(get()) }
 }
