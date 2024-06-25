@@ -5,13 +5,20 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acalapatih.oneayat.BaseActivity
+import com.acalapatih.oneayat.R
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.ActivityBookmarkBinding
 import com.acalapatih.oneayat.ui.bookmark.adapter.BookmarkAdapter
 import com.acalapatih.oneayat.ui.bookmark.viewmodel.BookmarkViewModel
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
+import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookmarkActivity : BaseActivity<ActivityBookmarkBinding>() {
@@ -32,6 +39,28 @@ class BookmarkActivity : BaseActivity<ActivityBookmarkBinding>() {
     }
 
     private fun initView() {
+        val pengaturanPref = SettingPreferences.getInstance(dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSetting().observe(this@BookmarkActivity) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    icBack.setImageResource(R.drawable.ic_back_white)
+                    icTerakhirDibaca.setImageResource(R.drawable.ic_dibaca_white)
+                    icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_white)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    icBack.setImageResource(R.drawable.ic_back_green)
+                    icTerakhirDibaca.setImageResource(R.drawable.ic_dibaca_green)
+                    icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_green)
+                }
+            }
+        }
+
         bookmarkAdapter = BookmarkAdapter(this@BookmarkActivity)
         val layoutManager = LinearLayoutManager(this@BookmarkActivity)
         val itemDecoration = DividerItemDecoration(this@BookmarkActivity, layoutManager.orientation)

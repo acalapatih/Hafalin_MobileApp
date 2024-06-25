@@ -12,6 +12,7 @@ import com.acalapatih.oneayat.databinding.RecyclerviewListJuzBinding
 
 class ListJuzAdapter(
     private val context: Context,
+    private val isDarkModeActive: Boolean,
     val listener: OnUserClickListener? = null,
 ): RecyclerView.Adapter<ListJuzAdapter.ViewHolder>() {
 
@@ -34,6 +35,12 @@ class ListJuzAdapter(
 
                 cvJuz.setOnClickListener {
                     listener?.onUserClicked(data.nomorJuz, data.infoJuz, "bacaJuz")
+                }
+
+                if (isDarkModeActive) {
+                    icNomor.setImageResource(R.drawable.ic_nomor_white)
+                } else {
+                    icNomor.setImageResource(R.drawable.ic_nomor_green)
                 }
             }
         }

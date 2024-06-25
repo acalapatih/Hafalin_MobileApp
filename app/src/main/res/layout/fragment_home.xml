@@ -11,7 +11,6 @@
         android:id="@+id/cv_header_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -78,7 +77,7 @@
 
                     <TextView
                         android:id="@+id/tv_label_progres_hafalan"
-                        style="@style/tv_semibold"
+                        style="@style/tv_const_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -104,7 +103,7 @@
 
                     <TextView
                         android:id="@+id/tv_progres_hafalan"
-                        style="@style/tv_regular"
+                        style="@style/tv_const_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -117,10 +116,10 @@
 
                     <TextView
                         android:id="@+id/tv_empty_progres_hafalan"
-                        style="@style/tv_regular"
+                        style="@style/tv_const_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Anda Belum Memulai Hafalan"
+                        android:text="@string/tv_empty_progres_hafalan"
                         android:visibility="visible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -216,7 +215,7 @@
 
                     <TextView
                         android:id="@+id/tv_terakhir_dibaca"
-                        style="@style/tv_semibold"
+                        style="@style/tv_const_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
@@ -228,7 +227,7 @@
 
                     <TextView
                         android:id="@+id/tv_ayat_dibaca"
-                        style="@style/tv_regular"
+                        style="@style/tv_const_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -273,7 +272,7 @@
 
                     <TextView
                         android:id="@+id/tv_terakhir_dihafal"
-                        style="@style/tv_semibold"
+                        style="@style/tv_const_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
@@ -285,7 +284,7 @@
 
                     <TextView
                         android:id="@+id/tv_surat_dihafal"
-                        style="@style/tv_regular"
+                        style="@style/tv_const_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"

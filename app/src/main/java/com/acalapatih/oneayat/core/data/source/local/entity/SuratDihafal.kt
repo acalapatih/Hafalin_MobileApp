@@ -45,6 +45,36 @@ data class AlIkhlas(
     val statusAyat: String
 ) : Parcelable
 
+@Entity(tableName = "AlLahab")
+@Parcelize
+data class AlLahab(
+    @PrimaryKey
+    val idAyat: Int,
+    val namaSurat: String,
+    val nomorAyat: Int,
+    val statusAyat: String
+) : Parcelable
+
+@Entity(tableName = "AnNasr")
+@Parcelize
+data class AnNasr(
+    @PrimaryKey
+    val idAyat: Int,
+    val namaSurat: String,
+    val nomorAyat: Int,
+    val statusAyat: String
+) : Parcelable
+
+@Entity(tableName = "AlKafirun")
+@Parcelize
+data class AlKafirun(
+    @PrimaryKey
+    val idAyat: Int,
+    val namaSurat: String,
+    val nomorAyat: Int,
+    val statusAyat: String
+) : Parcelable
+
 @Entity(tableName = "AtTakwir")
 @Parcelize
 data class AtTakwir(
@@ -68,16 +98,6 @@ data class AnNaba(
 @Entity(tableName = "AlMulk")
 @Parcelize
 data class AlMulk(
-    @PrimaryKey
-    val idAyat: Int,
-    val namaSurat: String,
-    val nomorAyat: Int,
-    val statusAyat: String
-) : Parcelable
-
-@Entity(tableName = "AlKahfi")
-@Parcelize
-data class AlKahfi(
     @PrimaryKey
     val idAyat: Int,
     val namaSurat: String,

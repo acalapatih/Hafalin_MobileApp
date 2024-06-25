@@ -7,4 +7,61 @@
         <item name="colorAccent">@color/teal_200</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="bg_primary">
+        <item name="android:background">@color/blue_001C30</item>
+    </style>
+
+    <style name="bg_penanda">
+        <item name="android:background">@drawable/bg_penanda_dark</item>
+    </style>
+
+    <style name="tv_nomor">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@color/black_040D12</item>
+    </style>
+
+    <style name="tv_regular">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="tv_semibold">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="tv_bold">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="tv_const_regular">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/black_040D12</item>
+    </style>
+
+    <style name="tv_const_semibold">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@color/black_040D12</item>
+    </style>
+
+    <style name="tv_const_bold">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/black_040D12</item>
+    </style>
+
+    <style name="line_thick">
+        <item name="android:background">@color/white_DAFFFB</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
+
+    <style name="line_thin">
+        <item name="android:background">@color/white_DAFFFB</item>
+        <item name="android:alpha">0.5</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+    </style>
 </resources>

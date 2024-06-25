@@ -7,16 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.data.source.local.entity.AyatDibaca
 import com.acalapatih.oneayat.core.data.source.local.entity.AyatFavorit
 import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaJuzModel
 import com.acalapatih.oneayat.databinding.RecyclerviewAyatBinding
+import com.google.api.Visibility
 
 class BacaJuzAdapter(
     private val context: Context,
     private val listAyat: List<BacaJuzModel.GetListAyat>,
+    private val isDarkModeActive: Boolean,
     val listener: BacaJuzAdapter.OnUserClickListener? = null
 ): RecyclerView.Adapter<BacaJuzAdapter.ViewHolder>() {
     var ayatFavoritSelected: ((ayatFavorit: AyatFavorit, nomorAyat: String, icFavorit: ImageView) -> Unit)? = null
@@ -40,10 +43,20 @@ class BacaJuzAdapter(
 //                    ayatFavoritSelected?.invoke(ayatFavorit, data.nomorAyat, icFavorit)
 //                }
 
+                icTandai.visibility = View.GONE
+                icFavorit.visibility = View.GONE
                 icAudio.setOnClickListener {
                     val audioAyatPlayer = MediaPlayer.create(context, data.audioAyat.toUri())
                     audioAyatPlayer.start()
                     listener?.onUserClickedAudio(data.nomorAyat, audioAyatPlayer, "audioAyat")
+                }
+
+                if (isDarkModeActive) {
+                    icAudio.setImageResource(R.drawable.ic_audio_white)
+                    icNomor.setImageResource(R.drawable.ic_nomor_white)
+                } else {
+                    icAudio.setImageResource(R.drawable.ic_audio_green)
+                    icNomor.setImageResource(R.drawable.ic_nomor_green)
                 }
             }
         }

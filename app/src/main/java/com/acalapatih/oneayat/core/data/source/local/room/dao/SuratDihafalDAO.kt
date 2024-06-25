@@ -44,6 +44,33 @@ interface AlIkhlasDao {
 }
 
 @Dao
+interface AlLahabDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(AlLahab: AlLahab)
+
+    @Query("SELECT * FROM AlLahab ORDER BY nomorAyat ASC")
+    fun getAlLahab(): LiveData<List<AlLahab>>
+}
+
+@Dao
+interface AnNasrDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(AnNasr: AnNasr)
+
+    @Query("SELECT * FROM AnNasr ORDER BY nomorAyat ASC")
+    fun getAllAnNasr(): LiveData<List<AnNasr>>
+}
+
+@Dao
+interface AlKafirunDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(alKafirun: AlKafirun)
+
+    @Query("SELECT * FROM AlKafirun ORDER BY nomorAyat ASC")
+    fun getAlKafirun(): LiveData<List<AlKafirun>>
+}
+
+@Dao
 interface AtTakwirDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(AtTakwir: AtTakwir)
@@ -68,13 +95,4 @@ interface AlMulkDao {
 
     @Query("SELECT * FROM AlMulk ORDER BY nomorAyat ASC")
     fun getAlMulk(): LiveData<List<AlMulk>>
-}
-
-@Dao
-interface AlKahfiDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(alKahfi: AlKahfi)
-
-    @Query("SELECT * FROM AlKahfi ORDER BY nomorAyat ASC")
-    fun getAlKahfi(): LiveData<List<AlKahfi>>
 }

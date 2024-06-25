@@ -32,4 +32,48 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/tv_switch_theme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        style="@style/tv_const_semibold"
+        android:text="@string/tv_switch_theme"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_header_setting" />
+
+    <ImageView
+        android:id="@+id/ic_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_light"
+        android:contentDescription="@string/desc_ic_light"
+        app:layout_constraintStart_toStartOf="@id/tv_switch_theme"
+        app:layout_constraintTop_toBottomOf="@id/tv_switch_theme"
+        android:layout_marginTop="15dp"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_mode_latar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/ic_light"
+        app:layout_constraintBottom_toBottomOf="@id/ic_light"
+        app:layout_constraintStart_toEndOf="@id/ic_light"
+        android:layout_marginStart="10dp"
+        android:thumb="@drawable/thumb_background"
+        app:track="@drawable/track_background"/>
+
+    <ImageView
+        android:id="@+id/ic_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dark"
+        android:contentDescription="@string/desc_ic_dark"
+        app:layout_constraintTop_toTopOf="@id/switch_mode_latar"
+        app:layout_constraintBottom_toBottomOf="@id/switch_mode_latar"
+        app:layout_constraintStart_toEndOf="@id/switch_mode_latar"
+        android:layout_marginStart="10dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

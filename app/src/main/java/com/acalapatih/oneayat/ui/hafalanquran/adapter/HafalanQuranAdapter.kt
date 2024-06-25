@@ -36,7 +36,7 @@ class HafalanQuranAdapter(
         )
     }
 
-    override fun getItemCount(): Int = listSurat.size
+    override fun getItemCount(): Int = 37
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val reversedPosition = listSurat.size - 1 - position

@@ -127,7 +127,7 @@
 
                 <TextView
                     android:id="@+id/tv_audio_ayat"
-                    style="@style/tv_semibold"
+                    style="@style/tv_const_semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"

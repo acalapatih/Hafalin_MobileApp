@@ -12,19 +12,23 @@ import com.acalapatih.oneayat.core.data.source.local.room.dao.*
     AnNas::class,
     AlFalaq::class,
     AlIkhlas::class,
+    AlLahab::class,
+    AnNasr::class,
+    AlKafirun::class,
     AtTakwir::class,
     AnNaba::class,
-    AlMulk::class,
-    AlKahfi::class], version = 1)
+    AlMulk::class, ], version = 1)
 abstract class SuratDihafalDatabase : RoomDatabase() {
     abstract fun alFatihahDao(): AlFatihahDao
     abstract fun anNasDao(): AnNasDao
     abstract fun alFalaqDao(): AlFalaqDao
     abstract fun alIkhlasDao(): AlIkhlasDao
+    abstract fun alLahabDao(): AlLahabDao
+    abstract fun anNasrDao(): AnNasrDao
+    abstract fun alKafirunDao(): AlKafirunDao
     abstract fun atTakwirDao(): AtTakwirDao
     abstract fun anNabaDao(): AnNabaDao
     abstract fun alMulkDao(): AlMulkDao
-    abstract fun alKahfiDao(): AlKahfiDao
 
     companion object {
         @Volatile

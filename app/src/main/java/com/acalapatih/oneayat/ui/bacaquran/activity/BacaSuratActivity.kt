@@ -7,19 +7,26 @@ import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acalapatih.oneayat.BaseActivity
+import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.data.source.local.entity.AyatDibaca
 import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaSuratModel
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.ActivityBacaSuratBinding
 import com.acalapatih.oneayat.ui.bacaquran.adapter.BacaSuratAdapter
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.BacaSuratViewModel
 import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
 import com.acalapatih.oneayat.utils.Const.NOMOR_SURAT
+import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BacaSuratActivity : BaseActivity<ActivityBacaSuratBinding>(), BacaSuratAdapter.OnUserClickListener {
@@ -84,22 +91,59 @@ class BacaSuratActivity : BaseActivity<ActivityBacaSuratBinding>(), BacaSuratAda
 
     @SuppressLint("SetTextI18n")
     private fun getListAyat(data: BacaSuratModel) {
-        bacaSuratAdapter = BacaSuratAdapter(
-            this@BacaSuratActivity,
-            data.namaSurat,
-            data.nomorSurat,
-            data.listAyat,
-            this
-        )
+        val pengaturanPref = SettingPreferences.getInstance(dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+        val listener = this
 
-        with(binding) {
-            tvSurat.text = data.namaSurat
-            tvInfoSurat.text = "${data.artiSurat} | ${data.jumlahAyat} Ayat"
-            rvAyat.adapter = bacaSuratAdapter
+        settingViewModel.getThemeSetting().observe(this@BacaSuratActivity) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    icBack.setImageResource(R.drawable.ic_back_white)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_white)
+                    imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_dark)
+                    bacaSuratAdapter = BacaSuratAdapter(
+                        this@BacaSuratActivity,
+                        data.namaSurat,
+                        data.nomorSurat,
+                        data.listAyat,
+                        isDarkModeActive,
+                        listener
+                    )
+                    tvSurat.text = data.namaSurat
+                    tvInfoSurat.text = "${data.artiSurat} | ${data.jumlahAyat} Ayat"
+                    rvAyat.adapter = bacaSuratAdapter
 
-            bacaSuratAdapter.ayatFavoritSelected = { ayatFavorit, nomorAyat, icFavorit ->
-                showDialogAyatFavorit {
-                    viewModel.insertAyatFavorit(ayatFavorit)
+                    bacaSuratAdapter.ayatFavoritSelected = { ayatFavorit, nomorAyat, icFavorit ->
+                        showDialogAyatFavorit {
+                            viewModel.insertAyatFavorit(ayatFavorit)
+                        }
+                    }
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    icBack.setImageResource(R.drawable.ic_back_green)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_light)
+                    bacaSuratAdapter = BacaSuratAdapter(
+                        this@BacaSuratActivity,
+                        data.namaSurat,
+                        data.nomorSurat,
+                        data.listAyat,
+                        isDarkModeActive,
+                        listener
+                    )
+                    tvSurat.text = data.namaSurat
+                    tvInfoSurat.text = "${data.artiSurat} | ${data.jumlahAyat} Ayat"
+                    rvAyat.adapter = bacaSuratAdapter
+
+                    bacaSuratAdapter.ayatFavoritSelected = { ayatFavorit, nomorAyat, icFavorit ->
+                        showDialogAyatFavorit {
+                            viewModel.insertAyatFavorit(ayatFavorit)
+                        }
+                    }
                 }
             }
         }

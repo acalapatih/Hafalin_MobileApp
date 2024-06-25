@@ -5,16 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.domain.model.bacaquran.ListSuratModel
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.FragmentListSuratBinding
 import com.acalapatih.oneayat.ui.bacaquran.activity.BacaSuratActivity
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.ListSuratViewModel
 import com.acalapatih.oneayat.ui.bacaquran.adapter.ListSuratAdapter
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
+import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListSuratFragment : Fragment(), ListSuratAdapter.OnUserClickListener {
@@ -83,8 +90,26 @@ class ListSuratFragment : Fragment(), ListSuratAdapter.OnUserClickListener {
     }
 
     private fun getListSurah(data: ListSuratModel) {
-        listSuratAdapter = ListSuratAdapter(data.listSurat, this)
-        binding.rvSurat.adapter = listSuratAdapter
+        val pengaturanPref = SettingPreferences.getInstance(requireContext().dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+        val listener = this
+
+        settingViewModel.getThemeSetting().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    listSuratAdapter = ListSuratAdapter(data.listSurat, isDarkModeActive, listener)
+                    binding.rvSurat.adapter = listSuratAdapter
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    listSuratAdapter = ListSuratAdapter(data.listSurat, isDarkModeActive, listener)
+                    binding.rvSurat.adapter = listSuratAdapter           
+                }
+            }
+        }
     }
 
     override fun onUserClicked(nomorSurat: String, clicked: String) {

@@ -2,10 +2,12 @@ package com.acalapatih.oneayat
 
 import android.os.Bundle
 import android.view.WindowManager
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.acalapatih.oneayat.utils.Const
 import com.acalapatih.oneayat.databinding.ActivityMainBinding
 import com.acalapatih.oneayat.ui.home.activity.HomeActivity
+import com.acalapatih.oneayat.ui.onboarding.OnboardingActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -27,10 +29,14 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        val transitionAnimation =
+            AnimationUtils.loadAnimation(this, R.anim.splash_screen_animation)
+        binding.imgOneAyat.animation = transitionAnimation
+
         activityScope.launch {
             delay(Const.DELAY_SPLASH_SCREEN)
             runOnUiThread {
-                HomeActivity.start(this@MainActivity, "home")
+                OnboardingActivity.start(this@MainActivity)
                 finish()
             }
         }

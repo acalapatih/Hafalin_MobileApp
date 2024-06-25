@@ -6,16 +6,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.acalapatih.oneayat.BaseActivity
 import com.acalapatih.oneayat.R
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.FragmentHomeBinding
 import com.acalapatih.oneayat.ui.bacaquran.activity.BacaQuranActivity
 import com.acalapatih.oneayat.ui.bookmark.activity.AyatDisimpan
 import com.acalapatih.oneayat.ui.hafalanquran.activity.HafalanQuranActivity
 import com.acalapatih.oneayat.ui.hafalanquran.activity.HafalanSuratActivity
 import com.acalapatih.oneayat.ui.home.viewmodel.HomeViewModel
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
+import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,13 +45,34 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initView()
         initObserver()
         initListener()
     }
 
+    private fun initView() {
+        val pengaturanPref = SettingPreferences.getInstance(requireContext().dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSetting().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    cvHeaderHome.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.blue_001C30)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    cvHeaderHome.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.white)
+                }
+            }
+        }
+    }
+
     @SuppressLint("SetTextI18n")
     private fun initObserver() {
-        viewModel.ayatDibaca.observe(this) { data ->
+        viewModel.ayatDibaca.observe(viewLifecycleOwner) { data ->
             if (data != null) {
                 with(binding) {
                     tvAyatDibaca.text = "Q.S ${data.namaSurat} : ${data.nomorAyat}"
@@ -57,8 +85,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-        viewModel.waktuHafalan.observe(this) { waktuHafalan ->
-            viewModel.jumlahAyatDihafal.observe(this) { jumlahAyat ->
+        viewModel.waktuHafalan.observe(viewLifecycleOwner) { waktuHafalan ->
+            viewModel.jumlahAyatDihafal.observe(viewLifecycleOwner) { jumlahAyat ->
                 if (waktuHafalan != null && jumlahAyat != null) {
                     with(binding) {
                         tvEmptyProgresHafalan.visibility = View.GONE
@@ -86,7 +114,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        viewModel.ayatDihafal.observe(this) { ayatDihafal ->
+        viewModel.ayatDihafal.observe(viewLifecycleOwner) { ayatDihafal ->
             if (ayatDihafal != null) {
                 with(binding) {
                     tvSuratDihafal.text = "Q.S ${ayatDihafal.namaSurat} : ${ayatDihafal.nomorAyat}"

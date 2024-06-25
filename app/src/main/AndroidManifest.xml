@@ -33,6 +33,13 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="001" />
+
+        <activity
+            android:name=".ui.home.activity.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.bookmark.activity.AyatDisimpan"
             android:exported="false" />
@@ -71,9 +78,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.home.activity.HomeActivity"
-            android:exported="false" />
     </application>
 
 </manifest>

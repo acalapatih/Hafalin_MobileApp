@@ -239,10 +239,12 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                         "An-Nas" -> checkAndInsertAnNas(namaSurat, nomorAyat.toInt())
                         "Al-Falaq" -> checkAndInsertAlFalaq(namaSurat, nomorAyat.toInt())
                         "Al-Ikhlas" -> checkAndInsertAlIkhlas(namaSurat, nomorAyat.toInt())
+                        "Al-Lahab" -> checkAndInsertAlLahab(namaSurat, nomorAyat.toInt())
+                        "An-Nasr" -> checkAndInsertAnNasr(namaSurat, nomorAyat.toInt())
+                        "Al-Kafirun" -> checkAndInsertAlKafirun(namaSurat, nomorAyat.toInt())
                         "At-Takwir" -> checkAndInsertAtTakwir(namaSurat, nomorAyat.toInt())
                         "An-Naba'" -> checkAndInsertAnNaba(namaSurat, nomorAyat.toInt())
                         "Al-Mulk" -> checkAndInsertAlMulk(namaSurat, nomorAyat.toInt())
-                        "Al-Kahf" -> checkAndInsertAlKahfi(namaSurat, nomorAyat.toInt())
                     }
 
                     val ayatDihafal = nomorSurat?.let { AyatDihafal(1, it, namaSurat, nomorAyat, ambilWaktuHafalan()) }
@@ -290,6 +292,21 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
         viewModel.insertAlIkhlas(alIkhlas)
     }
 
+    private fun checkAndInsertAlLahab(namaSurat: String, nomorAyat: Int) {
+        val alLahab = AlLahab(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlLahab(alLahab)
+    }
+
+    private fun checkAndInsertAnNasr(namaSurat: String, nomorAyat: Int) {
+        val anNasr = AnNasr(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAnNasr(anNasr)
+    }
+
+    private fun checkAndInsertAlKafirun(namaSurat: String, nomorAyat: Int) {
+        val alKafirun = AlKafirun(nomorAyat, namaSurat, nomorAyat, "dihafal")
+        viewModel.insertAlKafirun(alKafirun)
+    }
+
     private fun checkAndInsertAtTakwir(namaSurat: String, nomorAyat: Int) {
         val atTakwir = AtTakwir(nomorAyat, namaSurat, nomorAyat, "dihafal")
         viewModel.insertAtTakwir(atTakwir)
@@ -303,11 +320,6 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
     private fun checkAndInsertAlMulk(namaSurat: String, nomorAyat: Int) {
         val alMulk = AlMulk(nomorAyat, namaSurat, nomorAyat, "dihafal")
         viewModel.insertAlMulk(alMulk)
-    }
-
-    private fun checkAndInsertAlKahfi(namaSurat: String, nomorAyat: Int) {
-        val alKahfi = AlKahfi(nomorAyat, namaSurat, nomorAyat, "dihafal")
-        viewModel.insertAlKahfi(alKahfi)
     }
 
     @SuppressLint("SimpleDateFormat")

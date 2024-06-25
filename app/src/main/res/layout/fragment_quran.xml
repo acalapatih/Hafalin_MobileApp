@@ -69,7 +69,7 @@
 
                 <TextView
                     android:id="@+id/tv_terakhir_dibaca"
-                    style="@style/tv_semibold"
+                    style="@style/tv_const_semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
@@ -114,7 +114,7 @@
 
                 <TextView
                     android:id="@+id/tv_hafalan_quran"
-                    style="@style/tv_semibold"
+                    style="@style/tv_const_semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"

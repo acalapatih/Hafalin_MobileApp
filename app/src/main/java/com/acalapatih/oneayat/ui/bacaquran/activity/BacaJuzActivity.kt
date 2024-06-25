@@ -6,22 +6,29 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acalapatih.oneayat.databinding.ActivityBacaJuzBinding
 import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity
 import com.acalapatih.oneayat.ui.hafalanquran.activity.HafalanQuranActivity
 import com.acalapatih.oneayat.BaseActivity
+import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaJuzModel
 import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaSuratModel
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.ui.bacaquran.adapter.BacaJuzAdapter
 import com.acalapatih.oneayat.ui.bacaquran.adapter.BacaSuratAdapter
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.BacaJuzViewModel
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.ListJuzViewModel
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
 import com.acalapatih.oneayat.utils.Const.INFO_JUZ
 import com.acalapatih.oneayat.utils.Const.NOMOR_JUZ
+import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BacaJuzActivity : BaseActivity<ActivityBacaJuzBinding>() {
@@ -46,6 +53,26 @@ class BacaJuzActivity : BaseActivity<ActivityBacaJuzBinding>() {
     }
 
     private fun initView() {
+        val pengaturanPref = SettingPreferences.getInstance(dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSetting().observe(this@BacaJuzActivity) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    icBack.setImageResource(R.drawable.ic_back_white)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_white)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    icBack.setImageResource(R.drawable.ic_back_green)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                }
+            }
+        }
+
         val layoutManager = LinearLayoutManager(this@BacaJuzActivity)
         val itemDecoration = DividerItemDecoration(this@BacaJuzActivity, layoutManager.orientation)
         with(binding.rvAyat) {
@@ -87,15 +114,42 @@ class BacaJuzActivity : BaseActivity<ActivityBacaJuzBinding>() {
 
     @SuppressLint("SetTextI18n")
     private fun getListAyat(data: BacaJuzModel) {
-        bacaJuzAdapter = BacaJuzAdapter(
-            this@BacaJuzActivity,
-            data.listAyat,
-        )
+        val pengaturanPref = SettingPreferences.getInstance(dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
 
-        with(binding) {
-            tvJuz.text = "Juz ${data.nomorJuz}"
-            tvInfoJuz.text = "$infoJuz"
-            rvAyat.adapter = bacaJuzAdapter
+        settingViewModel.getThemeSetting().observe(this@BacaJuzActivity) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    icBack.setImageResource(R.drawable.ic_back_white)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_white)
+                    imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_dark)
+                    bacaJuzAdapter = BacaJuzAdapter(
+                        this@BacaJuzActivity,
+                        data.listAyat,
+                        isDarkModeActive
+                    )
+                    tvJuz.text = "Juz ${data.nomorJuz}"
+                    tvInfoJuz.text = "$infoJuz"
+                    rvAyat.adapter = bacaJuzAdapter
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    icBack.setImageResource(R.drawable.ic_back_green)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_light)
+                    bacaJuzAdapter = BacaJuzAdapter(
+                        this@BacaJuzActivity,
+                        data.listAyat,
+                        isDarkModeActive
+                    )
+                    tvJuz.text = "Juz ${data.nomorJuz}"
+                    tvInfoJuz.text = "$infoJuz"
+                    rvAyat.adapter = bacaJuzAdapter
+                }
+            }
         }
     }
 

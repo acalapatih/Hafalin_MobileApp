@@ -1,15 +1,17 @@
 package com.acalapatih.oneayat.ui.setting
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.acalapatih.oneayat.R
-import com.acalapatih.oneayat.databinding.FragmentQuranBinding
+import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.FragmentSettingBinding
-import com.acalapatih.oneayat.ui.bacaquran.activity.BacaQuranActivity
-import com.acalapatih.oneayat.ui.hafalanquran.activity.HafalanQuranActivity
+import com.acalapatih.oneayat.utils.dataStore
 
 class SettingFragment : Fragment() {
     private var _binding: FragmentSettingBinding? = null
@@ -26,5 +28,30 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initSwitch()
+    }
+
+    private fun initSwitch() {
+        val switchTheme = binding.switchModeLatar
+
+        val pengaturanPref = SettingPreferences.getInstance(requireContext().dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSetting().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                switchTheme.isChecked = true
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                switchTheme.isChecked = false
+            }
+        }
+
+        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+            settingViewModel.saveThemeSetting(isChecked)
+        }
     }
 }

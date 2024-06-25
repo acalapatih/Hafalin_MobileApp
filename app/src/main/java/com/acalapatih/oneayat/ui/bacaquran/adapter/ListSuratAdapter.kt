@@ -11,6 +11,7 @@ import com.acalapatih.oneayat.databinding.RecyclerviewListSuratBinding
 
 class ListSuratAdapter(
     private val listSurat: List<ListSuratModel.GetListSurat>,
+    private val isDarkModeActive: Boolean,
     val listener: OnUserClickListener? = null,
 ): RecyclerView.Adapter<ListSuratAdapter.ViewHolder>() {
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -26,6 +27,12 @@ class ListSuratAdapter(
 
                 cvSurat.setOnClickListener {
                     listener?.onUserClicked(data.nomorSurat, "bacaSurat")
+                }
+
+                if (isDarkModeActive) {
+                    icNomor.setImageResource(R.drawable.ic_nomor_white)
+                } else {
+                    icNomor.setImageResource(R.drawable.ic_nomor_green)
                 }
             }
         }

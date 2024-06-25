@@ -62,6 +62,15 @@ class HafalanSuratViewModel(
     fun getAllAlIkhlas(): LiveData<List<AlIkhlas>> =
         ayatDihafalRepository.getAllAlIkhlas()
 
+    fun getAllAlLahab(): LiveData<List<AlLahab>> =
+        ayatDihafalRepository.getAllAlLahab()
+
+    fun getAllAnNasr(): LiveData<List<AnNasr>> =
+        ayatDihafalRepository.getAllAnNasr()
+
+    fun getAllAlKafirun(): LiveData<List<AlKafirun>> =
+        ayatDihafalRepository.getAllAlKafirun()
+
     fun getAllAtTakwir(): LiveData<List<AtTakwir>> =
         ayatDihafalRepository.getAllAtTakwir()
 
@@ -70,7 +79,4 @@ class HafalanSuratViewModel(
 
     fun getAllAlMulk(): LiveData<List<AlMulk>> =
         ayatDihafalRepository.getAllAlMulk()
-
-    fun getAllAlKahfi(): LiveData<List<AlKahfi>> =
-        ayatDihafalRepository.getAllAlKahfi()
 }

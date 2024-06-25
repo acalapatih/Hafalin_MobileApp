@@ -91,4 +91,18 @@
     <string name="tv_tidaklancar">Tidak Lancar</string>
     <string name="tv_detail_tidaklancar"><![CDATA[(Menghafal 1 ayat dalam > 3 hari)]]></string>
     <string name="tv_nav_setting">Pengaturan</string>
+    <string name="back">Back</string>
+    <string name="tv_title_onboarding">Title Onboarding</string>
+    <string name="tv_desc_onboarding">Lorem Ipsum Dolor Sit Amet</string>
+    <string name="title_onboarding_1">Baca Al-Qur\'an</string>
+    <string name="description_onboarding_1">OneAyat menyediakan teks Al-Qur\'an secara utuh beserta terjemahan dan audio bacaannya yang dapat anda baca dan pelajari.</string>
+    <string name="title_onboarding_2">Setoran Hafalan Al-Qur\'an</string>
+    <string name="description_onboarding_2">OneAyat menyediakan fitur Speech Recognition untuk setoran hafalan Al-Qur\'an dan hasil hafalan didapatkan secara instan.</string>
+    <string name="title_onboarding_3">Status Hafalan</string>
+    <string name="description_onboarding_3">Dengan fitur One Day One Ayat anda dapat melihat bagaimana progres status hafalan Al-Qur\'an yang telah dilakukan.</string>
+    <string name="tv_finish">Finish</string>
+    <string name="tv_switch_theme">Ganti Warna Latar</string>
+    <string name="desc_ic_light">Light Mode</string>
+    <string name="desc_ic_dark">Dark Mode</string>
+    <string name="tv_empty_progres_hafalan">Anda Belum Memulai Hafalan</string>
 </resources>

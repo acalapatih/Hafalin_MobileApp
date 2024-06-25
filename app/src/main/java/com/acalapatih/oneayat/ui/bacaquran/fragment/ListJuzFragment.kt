@@ -4,15 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acalapatih.oneayat.core.data.source.local.entity.JuzQuran
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.FragmentListJuzBinding
 import com.acalapatih.oneayat.ui.bacaquran.activity.BacaJuzActivity
 import com.acalapatih.oneayat.ui.bacaquran.adapter.ListJuzAdapter
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.ListJuzViewModel
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
+import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListJuzFragment : Fragment(), ListJuzAdapter.OnUserClickListener {
@@ -39,7 +45,6 @@ class ListJuzFragment : Fragment(), ListJuzAdapter.OnUserClickListener {
     }
 
     private fun initView() {
-        listJuzAdapter = ListJuzAdapter(requireContext(), this)
         val layoutManager = LinearLayoutManager(requireContext())
         val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         with(binding.rvJuz) {
@@ -49,7 +54,7 @@ class ListJuzFragment : Fragment(), ListJuzAdapter.OnUserClickListener {
     }
 
     private fun initObserver() {
-        viewModel.allListJuz.observe(this) { listJuz ->
+        viewModel.allListJuz.observe(viewLifecycleOwner) { listJuz ->
             listJuz?.let { data ->
                 getListJuz(data)
             }
@@ -61,8 +66,26 @@ class ListJuzFragment : Fragment(), ListJuzAdapter.OnUserClickListener {
     }
 
     private fun getListJuz(data: List<JuzQuran>) {
-        listJuzAdapter.setListJuz(data)
-        binding.rvJuz.adapter = listJuzAdapter
+        val pengaturanPref = SettingPreferences.getInstance(requireContext().dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+        val listener = this
+
+        settingViewModel.getThemeSetting().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                listJuzAdapter = ListJuzAdapter(requireContext(), isDarkModeActive, listener)
+                listJuzAdapter.setListJuz(data)
+                binding.rvJuz.adapter = listJuzAdapter
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                listJuzAdapter = ListJuzAdapter(requireContext(), isDarkModeActive, listener)
+                listJuzAdapter.setListJuz(data)
+                binding.rvJuz.adapter = listJuzAdapter
+            }
+        }
     }
 
     override fun onUserClicked(nomorJuz: String, infoJuz: String, clicked: String) {

@@ -75,6 +75,18 @@ class HafalanAyatViewModel(
         suratDihafalRepository.insertAlIkhlas(alIkhlas)
     }
 
+    fun insertAlLahab(alLahab: AlLahab) {
+        suratDihafalRepository.insertAlLahab(alLahab)
+    }
+
+    fun insertAnNasr(anNasr: AnNasr) {
+        suratDihafalRepository.insertAnNasr(anNasr)
+    }
+
+    fun insertAlKafirun(alKafirun: AlKafirun) {
+        suratDihafalRepository.insertAlKafirun(alKafirun)
+    }
+
     fun insertAtTakwir(atTakwir: AtTakwir) {
         suratDihafalRepository.insertAtTakwir(atTakwir)
     }
@@ -85,10 +97,6 @@ class HafalanAyatViewModel(
 
     fun insertAlMulk(alMulk: AlMulk) {
         suratDihafalRepository.insertAlMulk(alMulk)
-    }
-
-    fun insertAlKahfi(alKahfi: AlKahfi) {
-        suratDihafalRepository.insertAlKahfi(alKahfi)
     }
 
     fun insertAyatDihafal(ayatDihafal: AyatDihafal) {

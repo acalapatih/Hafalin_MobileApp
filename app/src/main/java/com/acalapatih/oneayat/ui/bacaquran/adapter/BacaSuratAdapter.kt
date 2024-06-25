@@ -19,6 +19,7 @@ class BacaSuratAdapter(
     private val namaSurat: String,
     private val nomorSurat: String,
     private val listAyat: List<BacaSuratModel.GetListAyat>,
+    private val isDarkModeActive: Boolean,
     val listener: OnUserClickListener? = null
 ): RecyclerView.Adapter<BacaSuratAdapter.ViewHolder>() {
 
@@ -47,6 +48,18 @@ class BacaSuratAdapter(
                     val audioAyatPlayer = MediaPlayer.create(context, data.audioAyat.toUri())
                     audioAyatPlayer.start()
                     listener?.onUserClickedAudio(data.nomorAyat, audioAyatPlayer, "audioAyat")
+                }
+
+                if (isDarkModeActive) {
+                    icAudio.setImageResource(R.drawable.ic_audio_white)
+                    icTandai.setImageResource(R.drawable.ic_tandai_white)
+                    icNomor.setImageResource(R.drawable.ic_nomor_white)
+                    icFavorit.setImageResource(R.drawable.ic_favorit_white)
+                } else {
+                    icAudio.setImageResource(R.drawable.ic_audio_green)
+                    icTandai.setImageResource(R.drawable.ic_tandai_green)
+                    icNomor.setImageResource(R.drawable.ic_nomor_green)
+                    icFavorit.setImageResource(R.drawable.ic_favorit_green)
                 }
             }
         }

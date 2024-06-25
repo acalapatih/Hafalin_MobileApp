@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.OneAyat" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorPrimary">@color/green_18392B</item>
+        <item name="colorPrimaryDark">@color/green_18392B</item>
         <item name="colorAccent">@color/teal_200</item>
         <!-- Customize your theme here. -->
     </style>
@@ -24,6 +24,11 @@
         <item name="android:background">@color/black_040D12</item>
     </style>
 
+    <style name="tv_nomor">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@color/white_DAFFFB</item>
+    </style>
+
     <style name="tv_regular">
         <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColor">@color/black_040D12</item>
@@ -35,6 +40,21 @@
     </style>
 
     <style name="tv_bold">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/black_040D12</item>
+    </style>
+
+    <style name="tv_const_regular">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/black_040D12</item>
+    </style>
+
+    <style name="tv_const_semibold">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:textColor">@color/black_040D12</item>
+    </style>
+
+    <style name="tv_const_bold">
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:textColor">@color/black_040D12</item>
     </style>

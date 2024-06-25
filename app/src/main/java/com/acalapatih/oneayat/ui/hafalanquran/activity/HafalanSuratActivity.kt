@@ -137,6 +137,33 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
                 }
             }
         }
+        if (data.namaSurat == "Al-Lahab") {
+            viewModel.getAllAlLahab().observe(this) { alLahab ->
+                hafalanSuratAdapter = HafalanSuratAdapter(data.listAyat, alLahab.size + 1, this)
+                with(binding) {
+                    tvSurat.text = data.namaSurat
+                    rvHafalanAyat.adapter = hafalanSuratAdapter
+                }
+            }
+        }
+        if (data.namaSurat == "An-Nasr") {
+            viewModel.getAllAnNasr().observe(this) { anNasr ->
+                hafalanSuratAdapter = HafalanSuratAdapter(data.listAyat, anNasr.size + 1, this)
+                with(binding) {
+                    tvSurat.text = data.namaSurat
+                    rvHafalanAyat.adapter = hafalanSuratAdapter
+                }
+            }
+        }
+        if (data.namaSurat == "Al-Kafirun") {
+            viewModel.getAllAlKafirun().observe(this) { alKafirun ->
+                hafalanSuratAdapter = HafalanSuratAdapter(data.listAyat, alKafirun.size + 1, this)
+                with(binding) {
+                    tvSurat.text = data.namaSurat
+                    rvHafalanAyat.adapter = hafalanSuratAdapter
+                }
+            }
+        }
         if (data.namaSurat == "At-Takwir") {
             viewModel.getAllAtTakwir().observe(this) { atTakwir ->
                 hafalanSuratAdapter = HafalanSuratAdapter(data.listAyat, atTakwir.size + 1, this)
@@ -158,15 +185,6 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
         if (data.namaSurat == "Al-Mulk") {
             viewModel.getAllAlMulk().observe(this) { alMulk ->
                 hafalanSuratAdapter = HafalanSuratAdapter(data.listAyat, alMulk.size + 1, this)
-                with(binding) {
-                    tvSurat.text = data.namaSurat
-                    rvHafalanAyat.adapter = hafalanSuratAdapter
-                }
-            }
-        }
-        if (data.namaSurat == "Al-Kahf") {
-            viewModel.getAllAlKahfi().observe(this) { alKahfi ->
-                hafalanSuratAdapter = HafalanSuratAdapter(data.listAyat, alKahfi.size + 1, this)
                 with(binding) {
                     tvSurat.text = data.namaSurat
                     rvHafalanAyat.adapter = hafalanSuratAdapter
