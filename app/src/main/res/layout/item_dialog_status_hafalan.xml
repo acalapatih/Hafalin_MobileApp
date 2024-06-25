@@ -12,7 +12,7 @@
 
         <TextView
             android:id="@+id/tv_status_hafalan"
-            style="@style/tv_semibold"
+            style="@style/tv_const_semibold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -45,7 +45,7 @@
 
         <TextView
             android:id="@+id/tv_lancar"
-            style="@style/tv_regular"
+            style="@style/tv_const_semibold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -57,7 +57,7 @@
 
         <TextView
             android:id="@+id/tv_detail_lancar"
-            style="@style/tv_regular"
+            style="@style/tv_const_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_detail_lancar"
@@ -77,7 +77,7 @@
 
         <TextView
             android:id="@+id/tv_kuranglancar"
-            style="@style/tv_regular"
+            style="@style/tv_const_semibold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -89,7 +89,7 @@
 
         <TextView
             android:id="@+id/tv_detail_kuranglancar"
-            style="@style/tv_regular"
+            style="@style/tv_const_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tv_detail_kuranglancar"
@@ -109,7 +109,7 @@
 
         <TextView
             android:id="@+id/tv_tidaklancar"
-            style="@style/tv_regular"
+            style="@style/tv_const_semibold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -121,7 +121,7 @@
 
         <TextView
             android:id="@+id/tv_detail_tidaklancar"
-            style="@style/tv_regular"
+            style="@style/tv_const_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"

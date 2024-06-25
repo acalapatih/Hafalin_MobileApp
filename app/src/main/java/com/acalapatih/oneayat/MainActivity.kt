@@ -1,5 +1,6 @@
 package com.acalapatih.oneayat
 
+import android.content.Context
 import android.os.Bundle
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
@@ -36,7 +37,16 @@ class MainActivity : AppCompatActivity() {
         activityScope.launch {
             delay(Const.DELAY_SPLASH_SCREEN)
             runOnUiThread {
-                OnboardingActivity.start(this@MainActivity)
+                val sharedPreferences = getSharedPreferences("appPreferences", Context.MODE_PRIVATE)
+                val isFirstRun = sharedPreferences.getBoolean("isFirstRun", true)
+
+                if (isFirstRun) {
+                    // Set the flag to false after the first run
+                    sharedPreferences.edit().putBoolean("isFirstRun", false).apply()
+                    OnboardingActivity.start(this@MainActivity)
+                } else {
+                    HomeActivity.start(this@MainActivity, "home")
+                }
                 finish()
             }
         }

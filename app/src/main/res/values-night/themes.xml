@@ -12,6 +12,10 @@
         <item name="android:background">@color/blue_001C30</item>
     </style>
 
+    <style name="bg_dialog">
+        <item name="android:background">@drawable/bg_dialog</item>
+    </style>
+
     <style name="bg_penanda">
         <item name="android:background">@drawable/bg_penanda_dark</item>
     </style>

@@ -16,19 +16,25 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import com.acalapatih.oneayat.BaseActivity
 import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.data.source.local.entity.*
 import com.acalapatih.oneayat.core.domain.model.hafalanquran.HafalanAyatModel
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.ActivityHafalanAyatBinding
 import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity
 import com.acalapatih.oneayat.ui.hafalanquran.viewmodel.HafalanAyatViewModel
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
 import com.acalapatih.oneayat.utils.Const
+import com.acalapatih.oneayat.utils.dataStore
 import com.google.cloud.speech.v1.*
 import org.apache.commons.text.similarity.JaroWinklerSimilarity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -128,37 +134,56 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     private fun getAyat(data: HafalanAyatModel) {
-        with(binding) {
-            tvSurat.text = data.namaSurat
-            tvAyatKe.text = "Ayat ${data.nomorAyat}"
-            tvAyat.text = data.lafadzAyat
+        val pengaturanPref = SettingPreferences.getInstance(dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
 
-            btnAudio.setOnClickListener {
-                cvAudioAyat.isVisible = true
-                tvAudioAyat.text = "${data.namaSurat} : ${data.nomorAyat}"
-
-                audioAyatPlayer = MediaPlayer.create(this@HafalanAyatActivity, data.audioAyat.toUri())
-                audioAyatPlayer.start()
-
-                btnStop.setOnClickListener {
-                    audioAyatPlayer.stop()
-                    audioAyatPlayer.release()
-                    cvAudioAyat.isVisible = false
+        settingViewModel.getThemeSetting().observe(this@HafalanAyatActivity) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    icBack.setImageResource(R.drawable.ic_back_white)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_white)
+                    clHasilHafalan.setBackgroundColor(R.drawable.bg_hasil_hafalan_dark)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    icBack.setImageResource(R.drawable.ic_back_green)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    clHasilHafalan.setBackgroundColor(R.drawable.bg_hasil_hafalan_light)
                 }
-            }
 
-            btnRekam.setOnClickListener {
-                tvAyat.visibility = View.GONE
-                cvHasilHafalan.visibility = View.GONE
-                showDialogRekamSuara(
-                    onClose = { binding.tvAyat.isVisible = true },
-                    onStartRecording = { startRecording(
-                        data.namaSurat,
-                        data.nomorAyat,
-                        data.lafadzAyat) },
-                    onStopRecording = { stopRecording() },
-                    onStopButtonClicked = {  }
-                )
+                tvSurat.text = data.namaSurat
+                tvAyatKe.text = "Ayat ${data.nomorAyat}"
+                tvAyat.text = data.lafadzAyat
+
+                btnAudio.setOnClickListener {
+                    cvAudioAyat.isVisible = true
+                    tvAudioAyat.text = "${data.namaSurat} : ${data.nomorAyat}"
+
+                    audioAyatPlayer = MediaPlayer.create(this@HafalanAyatActivity, data.audioAyat.toUri())
+                    audioAyatPlayer.start()
+
+                    btnStop.setOnClickListener {
+                        audioAyatPlayer.stop()
+                        audioAyatPlayer.release()
+                        cvAudioAyat.isVisible = false
+                    }
+                }
+                btnRekam.setOnClickListener {
+                    tvAyat.visibility = View.GONE
+                    cvHasilHafalan.visibility = View.GONE
+                    showDialogRekamSuara(
+                        onClose = { binding.tvAyat.isVisible = true },
+                        onStartRecording = { startRecording(
+                            data.namaSurat,
+                            data.nomorAyat,
+                            data.lafadzAyat) },
+                        onStopRecording = { stopRecording() },
+                        onStopButtonClicked = {  },
+                    )
+                }
             }
         }
     }

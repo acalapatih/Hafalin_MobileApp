@@ -105,4 +105,7 @@
     <string name="desc_ic_light">Light Mode</string>
     <string name="desc_ic_dark">Dark Mode</string>
     <string name="tv_empty_progres_hafalan">Anda Belum Memulai Hafalan</string>
+    <string name="btn_proses">Play Rekaman</string>
+    <string name="tv_tingkat_kemiripan">Tingkat Kemiripan</string>
+    <string name="tv_persentase_kemiripan">50%</string>
 </resources>

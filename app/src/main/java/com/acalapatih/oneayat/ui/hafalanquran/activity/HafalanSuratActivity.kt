@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acalapatih.oneayat.core.data.Resource
@@ -15,8 +17,13 @@ import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity
 import com.acalapatih.oneayat.ui.hafalanquran.adapter.HafalanSuratAdapter
 import com.acalapatih.oneayat.ui.hafalanquran.viewmodel.HafalanSuratViewModel
 import com.acalapatih.oneayat.BaseActivity
+import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.domain.model.hafalanquran.RequestTokenModel
+import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
+import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.ui.setting.SettingViewModel
 import com.acalapatih.oneayat.utils.Const.NOMOR_SURAT
+import com.acalapatih.oneayat.utils.dataStore
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), HafalanSuratAdapter.OnUserClickListener {
@@ -40,6 +47,26 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
     }
 
     private fun initView() {
+        val pengaturanPref = SettingPreferences.getInstance(dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSetting().observe(this@HafalanSuratActivity) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    icBack.setImageResource(R.drawable.ic_back_white)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_white)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    icBack.setImageResource(R.drawable.ic_back_green)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                }
+            }
+        }
+
         val layoutManager = LinearLayoutManager(this@HafalanSuratActivity)
         val itemDecoration = DividerItemDecoration(this@HafalanSuratActivity, layoutManager.orientation)
         with(binding.rvHafalanAyat) {

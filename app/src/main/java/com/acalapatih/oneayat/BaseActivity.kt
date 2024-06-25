@@ -155,7 +155,7 @@ abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity() {
     }
 
     protected fun showDialogAturNotifikasi(
-        onSimpanButtonClicked: ((hour: Int, minute: Int) -> Unit)? = null
+        onSimpanButtonClicked: ((hour: Int, minute: Int) -> Unit)? = null,
     ) {
         val dialog = Dialog(this)
         val dialogBinding = ItemDialogAturNotifikasiBinding.inflate(layoutInflater)
@@ -201,7 +201,7 @@ abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity() {
         onClose: () -> Unit,
         onStartRecording: () -> Unit,
         onStopRecording: () -> Unit,
-        onStopButtonClicked: () -> Unit
+        onStopButtonClicked: () -> Unit,
     ) {
         val dialog = Dialog(this)
         val dialogBinding = ItemDialogRekamSuaraBinding.inflate(layoutInflater)
