@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.acalapatih.oneayat.BaseActivity
 import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.ActivityBacaQuranBinding
 import com.acalapatih.oneayat.ui.bacaquran.SectionsPagerAdapter
 import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity

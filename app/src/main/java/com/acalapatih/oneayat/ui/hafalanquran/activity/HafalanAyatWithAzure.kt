@@ -172,16 +172,16 @@ class HafalanAyatWithAzure : BaseActivity<ActivityHafalanAyatBinding>() {
             btnRekam.setOnClickListener {
                 tvAyat.visibility = View.GONE
                 cvHasilHafalan.visibility = View.GONE
-                showDialogRekamSuara(
-                    onClose = { binding.tvAyat.isVisible = true },
-                    onStartRecording = { startRecording() },
-                    onStopRecording = { stopRecording() },
-                    onStopButtonClicked = { speechToTextProcess(
-                        data.namaSurat,
-                        data.nomorAyat,
-                        data.lafadzAyat
-                    ) }
-                )
+//                showDialogRekamSuara(
+//                    onClose = { binding.tvAyat.isVisible = true },
+//                    onStartRecording = { startRecording() },
+//                    onStopRecording = { stopRecording() },
+//                    onStopButtonClicked = { speechToTextProcess(
+//                        data.namaSurat,
+//                        data.nomorAyat,
+//                        data.lafadzAyat
+//                    ) }
+//                )
             }
         }
     }

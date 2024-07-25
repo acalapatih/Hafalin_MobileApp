@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acalapatih.oneayat.core.data.source.local.entity.JuzQuran
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.FragmentListJuzBinding
 import com.acalapatih.oneayat.ui.bacaquran.activity.BacaJuzActivity
 import com.acalapatih.oneayat.ui.bacaquran.adapter.ListJuzAdapter

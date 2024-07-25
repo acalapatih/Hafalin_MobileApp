@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatDelegate
@@ -13,18 +14,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acalapatih.oneayat.databinding.ActivityBacaJuzBinding
 import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity
-import com.acalapatih.oneayat.ui.hafalanquran.activity.HafalanQuranActivity
 import com.acalapatih.oneayat.BaseActivity
 import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaJuzModel
-import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaSuratModel
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.ui.bacaquran.adapter.BacaJuzAdapter
-import com.acalapatih.oneayat.ui.bacaquran.adapter.BacaSuratAdapter
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.BacaJuzViewModel
-import com.acalapatih.oneayat.ui.bacaquran.viewmodel.ListJuzViewModel
 import com.acalapatih.oneayat.ui.setting.SettingViewModel
 import com.acalapatih.oneayat.utils.Const.INFO_JUZ
 import com.acalapatih.oneayat.utils.Const.NOMOR_JUZ
@@ -86,11 +83,13 @@ class BacaJuzActivity : BaseActivity<ActivityBacaJuzBinding>() {
             when (model) {
                 is Resource.Loading -> {
                     showLoading(true)
+                    binding.imgHeaderBacaQuran.visibility = View.GONE
                 }
                 is Resource.Success -> {
                     showLoading(false)
                     model.data?.let { data ->
                         getListAyat(data)
+                        binding.imgHeaderBacaQuran.visibility = View.VISIBLE
                     }
                 }
                 is Resource.Error -> {

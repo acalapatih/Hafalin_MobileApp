@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.FragmentQuranBinding
 import com.acalapatih.oneayat.ui.bacaquran.activity.BacaQuranActivity
 import com.acalapatih.oneayat.ui.hafalanquran.activity.HafalanQuranActivity

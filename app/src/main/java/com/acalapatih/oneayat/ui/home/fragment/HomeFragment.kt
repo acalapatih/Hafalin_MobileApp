@@ -1,7 +1,6 @@
 package com.acalapatih.oneayat.ui.home.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.acalapatih.oneayat.BaseActivity
 import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.FragmentHomeBinding
 import com.acalapatih.oneayat.ui.bacaquran.activity.BacaQuranActivity
 import com.acalapatih.oneayat.ui.bookmark.activity.AyatDisimpan

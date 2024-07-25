@@ -1,7 +1,7 @@
 package com.acalapatih.oneayat.ui.setting
 
 import androidx.lifecycle.*
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import kotlinx.coroutines.launch
 
 class SettingViewModel(

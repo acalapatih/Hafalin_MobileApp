@@ -1,4 +1,4 @@
-package com.acalapatih.oneayat.core.preference
+package com.acalapatih.oneayat.core.data.source.local.preference
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

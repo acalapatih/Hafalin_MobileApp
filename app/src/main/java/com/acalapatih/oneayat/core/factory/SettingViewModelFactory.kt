@@ -2,7 +2,7 @@ package com.acalapatih.oneayat.core.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.ui.setting.SettingViewModel
 
 class SettingViewModelFactory(

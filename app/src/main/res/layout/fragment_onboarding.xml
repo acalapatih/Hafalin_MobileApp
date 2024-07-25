@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/green_EFFDEE"
     tools:context="com.acalapatih.oneayat.ui.onboarding.OnboardingActivity">
 
     <ImageView
@@ -13,7 +14,7 @@
         android:layout_margin="30dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@id/tv_title_onboarding"
-        android:src="@drawable/img_speech"
+        android:src="@drawable/img_progress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

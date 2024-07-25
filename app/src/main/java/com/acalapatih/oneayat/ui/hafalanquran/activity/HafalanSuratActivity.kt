@@ -20,7 +20,7 @@ import com.acalapatih.oneayat.BaseActivity
 import com.acalapatih.oneayat.R
 import com.acalapatih.oneayat.core.domain.model.hafalanquran.RequestTokenModel
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.ui.setting.SettingViewModel
 import com.acalapatih.oneayat.utils.Const.NOMOR_SURAT
 import com.acalapatih.oneayat.utils.dataStore

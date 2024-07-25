@@ -28,14 +28,13 @@ import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.data.source.local.entity.*
 import com.acalapatih.oneayat.core.domain.model.hafalanquran.HafalanAyatModel
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.ActivityHafalanAyatBinding
 import com.acalapatih.oneayat.ui.bookmark.activity.BookmarkActivity
 import com.acalapatih.oneayat.ui.hafalanquran.viewmodel.HafalanAyatViewModel
 import com.acalapatih.oneayat.ui.setting.SettingViewModel
 import com.acalapatih.oneayat.utils.Const
 import com.acalapatih.oneayat.utils.dataStore
-import com.google.cloud.speech.v1.*
 import org.apache.commons.text.similarity.JaroWinklerSimilarity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
@@ -146,12 +145,14 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     icBack.setImageResource(R.drawable.ic_back_white)
                     icBookmark.setImageResource(R.drawable.ic_bookmark_white)
-                    clHasilHafalan.setBackgroundColor(R.drawable.bg_hasil_hafalan_dark)
+                    clHasilHafalan.setBackgroundResource(R.drawable.bg_hasil_hafalan_dark)
+                    cvAudioAyat.backgroundTintList = ContextCompat.getColorStateList(this@HafalanAyatActivity, R.color.blue_001C30)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     icBack.setImageResource(R.drawable.ic_back_green)
                     icBookmark.setImageResource(R.drawable.ic_bookmark_green)
-                    clHasilHafalan.setBackgroundColor(R.drawable.bg_hasil_hafalan_light)
+                    clHasilHafalan.setBackgroundResource(R.drawable.bg_hasil_hafalan_light)
+                    cvAudioAyat.backgroundTintList = ContextCompat.getColorStateList(this@HafalanAyatActivity, R.color.white)
                 }
 
                 tvSurat.text = data.namaSurat
@@ -176,12 +177,12 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                     cvHasilHafalan.visibility = View.GONE
                     showDialogRekamSuara(
                         onClose = { binding.tvAyat.isVisible = true },
-                        onStartRecording = { startRecording(
+                        onStartRecording = { startRecording() },
+                        onStopRecording = { stopRecording(
                             data.namaSurat,
                             data.nomorAyat,
-                            data.lafadzAyat) },
-                        onStopRecording = { stopRecording() },
-                        onStopButtonClicked = {  },
+                            data.lafadzAyat
+                        ) }
                     )
                 }
             }
@@ -189,10 +190,16 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun startRecording(namaSurat: String, nomorAyat: String, lafadzAyat: String) {
+    private fun startRecording() {
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
         val speechRecognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ar-SA") // Bahasa Arab (Saudi Arabia)
+
+        speechRecognizer.startListening(speechRecognizerIntent)
+    }
+
+    private fun stopRecording(namaSurat: String, nomorAyat: String, lafadzAyat: String) {
+        speechRecognizer.stopListening()
 
         speechRecognizer.setRecognitionListener(object : RecognitionListener {
             override fun onReadyForSpeech(params: Bundle?) {}
@@ -223,12 +230,6 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
 
             override fun onEvent(eventType: Int, params: Bundle?) {}
         })
-
-        speechRecognizer.startListening(speechRecognizerIntent)
-    }
-
-    private fun stopRecording() {
-        speechRecognizer.stopListening()
     }
 
     override fun onDestroy() {

@@ -201,7 +201,6 @@ abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity() {
         onClose: () -> Unit,
         onStartRecording: () -> Unit,
         onStopRecording: () -> Unit,
-        onStopButtonClicked: () -> Unit,
     ) {
         val dialog = Dialog(this)
         val dialogBinding = ItemDialogRekamSuaraBinding.inflate(layoutInflater)
@@ -242,7 +241,6 @@ abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity() {
                     "Rekaman Berhenti",
                     Toast.LENGTH_SHORT
                 )
-                onStopButtonClicked.invoke()
                 dialog.dismiss()
             }
         }

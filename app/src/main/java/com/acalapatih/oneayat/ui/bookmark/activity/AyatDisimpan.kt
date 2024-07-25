@@ -19,7 +19,7 @@ import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.data.source.local.entity.AyatDibaca
 import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaSuratModel
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.ActivityAyatFavoritBinding
 import com.acalapatih.oneayat.ui.bacaquran.adapter.BacaSuratAdapter
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.BacaSuratViewModel

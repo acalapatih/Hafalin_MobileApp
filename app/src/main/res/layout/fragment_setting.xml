@@ -38,9 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        style="@style/tv_const_semibold"
+        style="@style/tv_semibold"
         android:text="@string/tv_switch_theme"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_header_setting" />
 

@@ -97,7 +97,7 @@
         android:id="@+id/cv_audio_ayat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white_DAFFFB"
+        android:backgroundTint="@color/white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

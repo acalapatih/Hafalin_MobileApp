@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -19,7 +21,7 @@ import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.data.source.local.entity.AyatDibaca
 import com.acalapatih.oneayat.core.domain.model.bacaquran.BacaSuratModel
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
-import com.acalapatih.oneayat.core.preference.SettingPreferences
+import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.databinding.ActivityBacaSuratBinding
 import com.acalapatih.oneayat.ui.bacaquran.adapter.BacaSuratAdapter
 import com.acalapatih.oneayat.ui.bacaquran.viewmodel.BacaSuratViewModel
@@ -63,11 +65,13 @@ class BacaSuratActivity : BaseActivity<ActivityBacaSuratBinding>(), BacaSuratAda
             when (model) {
                 is Resource.Loading -> {
                     showLoading(true)
+                    binding.imgHeaderBacaQuran.visibility = View.GONE
                 }
                 is Resource.Success -> {
                     showLoading(false)
                     model.data?.let { data ->
                         getListAyat(data)
+                        binding.imgHeaderBacaQuran.visibility = View.VISIBLE
                     }
                 }
                 is Resource.Error -> {
@@ -105,6 +109,7 @@ class BacaSuratActivity : BaseActivity<ActivityBacaSuratBinding>(), BacaSuratAda
                     icBack.setImageResource(R.drawable.ic_back_white)
                     icBookmark.setImageResource(R.drawable.ic_bookmark_white)
                     imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_dark)
+                    cvAudioAyat.backgroundTintList = ContextCompat.getColorStateList(this@BacaSuratActivity, R.color.blue_001C30)
                     bacaSuratAdapter = BacaSuratAdapter(
                         this@BacaSuratActivity,
                         data.namaSurat,
@@ -127,6 +132,7 @@ class BacaSuratActivity : BaseActivity<ActivityBacaSuratBinding>(), BacaSuratAda
                     icBack.setImageResource(R.drawable.ic_back_green)
                     icBookmark.setImageResource(R.drawable.ic_bookmark_green)
                     imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_light)
+                    cvAudioAyat.backgroundTintList = ContextCompat.getColorStateList(this@BacaSuratActivity, R.color.white)
                     bacaSuratAdapter = BacaSuratAdapter(
                         this@BacaSuratActivity,
                         data.namaSurat,

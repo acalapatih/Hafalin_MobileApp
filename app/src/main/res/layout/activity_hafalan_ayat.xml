@@ -5,7 +5,7 @@
     style="@style/bg_primary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.hafalanquran.activity.HafalanAyatWithAzure">
+    tools:context=".ui.hafalanquran.activity.HafalanAyatActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -262,7 +262,7 @@
             android:id="@+id/cv_audio_ayat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white_DAFFFB"
+            android:backgroundTint="@color/white"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -294,7 +294,7 @@
 
                     <TextView
                         android:id="@+id/tv_audio_ayat"
-                        style="@style/tv_semibold"
+                        style="@style/tv_const_semibold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="25dp"
