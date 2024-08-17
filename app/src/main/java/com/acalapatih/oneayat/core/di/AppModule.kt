@@ -5,12 +5,9 @@ import com.acalapatih.oneayat.core.data.repositoryImpl.bacaquran.BacaJuzReposito
 import com.acalapatih.oneayat.core.data.repositoryImpl.bacaquran.ListSuratRepositoryImpl
 import com.acalapatih.oneayat.core.data.repositoryImpl.bacaquran.BacaSuratRepositoryImpl
 import com.acalapatih.oneayat.core.data.repositoryImpl.hafalanquran.*
-import com.acalapatih.oneayat.core.data.source.local.LocalDataSource
-import com.acalapatih.oneayat.core.data.source.local.preference.MainPreferenceImpl
 import com.acalapatih.oneayat.core.data.source.remote.RemoteDataSource
 import com.acalapatih.oneayat.core.data.source.remote.network.QuranApiService
 import com.acalapatih.oneayat.core.data.source.remote.network.SpeechApiService
-import com.acalapatih.oneayat.core.data.source.remote.network.TokenApiService
 import com.acalapatih.oneayat.core.domain.interactor.bacaquran.BacaAyatInteractor
 import com.acalapatih.oneayat.core.domain.interactor.bacaquran.BacaJuzInteractor
 import com.acalapatih.oneayat.core.domain.interactor.bacaquran.ListSuratInteractor
@@ -44,10 +41,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-val storageModule = module {
-    single { MainPreferenceImpl.getInstances(androidContext()) }
-}
 
 val networkModule = module {
     single<QuranApiService> {
@@ -87,17 +80,15 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { RemoteDataSource(get(), get(), get()) }
-    single { LocalDataSource(get()) }
+    single { RemoteDataSource(get(), get()) }
     single<ListSuratRepository> { ListSuratRepositoryImpl(get()) }
     single<BacaSuratRepository> { BacaSuratRepositoryImpl(get()) }
     single<BacaJuzRepository> { BacaJuzRepositoryImpl(get()) }
     single<BacaAyatRepository> { BacaAyatRepositoryImpl(get()) }
     single<HafalanQuranRepository> { HafalanQuranRepositoryImpl(get()) }
-    single<HafalanSuratRepository> { HafalanSuratRepositoryImpl(get(), get()) }
+    single<HafalanSuratRepository> { HafalanSuratRepositoryImpl(get()) }
     single<HafalanAyatRepository> { HafalanAyatRepositoryImpl(get()) }
-    single<RequestTokenRepository> { RequestTokenRepositoryImpl(get()) }
-    single<SpeechToTextRepository> { SpeechToTextRepositoryImpl(get(), get()) }
+    single<SpeechToTextRepository> { SpeechToTextRepositoryImpl(get()) }
 }
 
 val useCaseModule = module {
@@ -108,7 +99,6 @@ val useCaseModule = module {
     factory<HafalanQuranUsecase> { HafalanQuranInteractor(get()) }
     factory<HafalanSuratUseCase> { HafalanSuratInteractor(get()) }
     single<HafalanAyatUsecase> { HafalanAyatInteractor(get()) }
-    single<RequestTokenUsecase> { RequestTokenInteractor(get()) }
     single<SpeechToTextUsecase> { SpeechToTextInteractor(get()) }
 }
 

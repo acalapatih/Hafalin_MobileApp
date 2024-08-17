@@ -55,7 +55,6 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
         supportActionBar?.hide()
 
         nomorSurat?.let { nomorAyat?.let { it1 -> viewModel.getAyat(it, it1) } }
-        viewModel.getToken()
 
         initView()
     }

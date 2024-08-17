@@ -6,7 +6,5 @@ import kotlinx.coroutines.flow.Flow
 import okhttp3.RequestBody
 
 interface SpeechToTextRepository {
-    fun getToken(): String
-
     fun postSpeechToText(requestBody: RequestBody): Flow<Resource<SpeechToTextModel>>
 }

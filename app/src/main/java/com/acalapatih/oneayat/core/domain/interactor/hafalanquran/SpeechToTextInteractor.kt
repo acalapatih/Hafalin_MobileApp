@@ -10,9 +10,6 @@ import okhttp3.RequestBody
 class SpeechToTextInteractor(
     private val repository: SpeechToTextRepository
 ): SpeechToTextUsecase {
-    override fun getToken(): String =
-        repository.getToken()
-
     override fun postSpeechToText(
         requestBody: RequestBody
     ): Flow<Resource<SpeechToTextModel>> =

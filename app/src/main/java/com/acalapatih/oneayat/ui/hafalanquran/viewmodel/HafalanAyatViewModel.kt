@@ -27,9 +27,6 @@ class HafalanAyatViewModel(
     private val _getAyat = MutableLiveData<Resource<HafalanAyatModel>>()
     val getAyat: LiveData<Resource<HafalanAyatModel>> get() = _getAyat
 
-    private val _token = MutableLiveData<String>()
-    val token: LiveData<String> get() = _token
-
     private val _postSpeechToText = MutableLiveData<Resource<SpeechToTextModel>>()
     val postSpeechToText: LiveData<Resource<SpeechToTextModel>> get() = _postSpeechToText
 
@@ -45,10 +42,6 @@ class HafalanAyatViewModel(
                 _getAyat.value = it
             }
         }
-    }
-
-    fun getToken() {
-        _token.value = usecaseSpeechToText.getToken()
     }
 
     fun postSpeechToText(requestBody: RequestBody) {

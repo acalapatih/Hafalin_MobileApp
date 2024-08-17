@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.acalapatih.oneayat.core.data.Resource
 import com.acalapatih.oneayat.core.data.source.local.entity.*
 import com.acalapatih.oneayat.core.domain.model.hafalanquran.HafalanSuratModel
-import com.acalapatih.oneayat.core.domain.model.hafalanquran.RequestTokenModel
 import com.acalapatih.oneayat.core.domain.repository.bookmark.SuratDihafalRepository
 import com.acalapatih.oneayat.core.domain.usecase.hafalanquran.HafalanSuratUseCase
 import kotlinx.coroutines.launch
@@ -20,9 +19,6 @@ class HafalanSuratViewModel(
     private val _getListAyat = MutableLiveData<Resource<HafalanSuratModel>>()
     val getListAyat: LiveData<Resource<HafalanSuratModel>> get() = _getListAyat
 
-    private val _requestToken = MutableLiveData<Resource<RequestTokenModel>>()
-    val requestToken: LiveData<Resource<RequestTokenModel>> get() = _requestToken
-
     private val ayatDihafalRepository: SuratDihafalRepository =
         SuratDihafalRepository(application)
 
@@ -31,12 +27,6 @@ class HafalanSuratViewModel(
             usecaseHafalanSurat.getListAyat(nomorSurat).collect{
                 _getListAyat.value = it
             }
-        }
-    }
-
-    fun setToken(token: String) {
-        viewModelScope.launch{
-            usecaseHafalanSurat.setToken(token)
         }
     }
 

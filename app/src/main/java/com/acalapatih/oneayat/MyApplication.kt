@@ -15,7 +15,6 @@ class MyApplication : Application() {
             androidContext(this@MyApplication)
             modules(
                 listOf(
-                    storageModule,
                     networkModule,
                     repositoryModule,
                     useCaseModule,

@@ -50,6 +50,24 @@ class AyatDisimpan : BaseActivity<ActivityAyatFavoritBinding>(), BacaSuratAdapte
     }
 
     private fun initView() {
+        val pengaturanPref = SettingPreferences.getInstance(this@AyatDisimpan.dataStore)
+        val settingViewModel = ViewModelProvider(
+            this,
+            SettingViewModelFactory(pengaturanPref)
+        )[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSetting().observe(this@AyatDisimpan) { isDarkModeActive: Boolean ->
+            with(binding) {
+                if (isDarkModeActive) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_dark)
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_light)
+                }
+            }
+        }
+
         val layoutManager = LinearLayoutManager(this@AyatDisimpan)
         val itemDecoration = DividerItemDecoration(this@AyatDisimpan, layoutManager.orientation)
         with(binding.rvAyat) {

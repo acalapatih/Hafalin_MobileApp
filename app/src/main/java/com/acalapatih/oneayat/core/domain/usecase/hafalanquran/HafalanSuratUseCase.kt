@@ -6,6 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 interface HafalanSuratUseCase {
     fun getListAyat(nomorSurat: String): Flow<Resource<HafalanSuratModel>>
-
-    fun setToken(token: String)
 }

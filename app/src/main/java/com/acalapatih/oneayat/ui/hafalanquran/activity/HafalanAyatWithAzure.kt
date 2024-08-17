@@ -64,7 +64,6 @@ class HafalanAyatWithAzure : BaseActivity<ActivityHafalanAyatBinding>() {
         supportActionBar?.hide()
 
         nomorSurat?.let { nomorAyat?.let { it1 -> viewModel.getAyat(it, it1) } }
-        viewModel.getToken()
 
         initView()
     }
@@ -108,13 +107,6 @@ class HafalanAyatWithAzure : BaseActivity<ActivityHafalanAyatBinding>() {
             ),
             REQUEST_PERMISSION_CODE
         )
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun getToken() {
-        if (viewModel.token.value?.isEmpty() == true) {
-            initObserver()
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

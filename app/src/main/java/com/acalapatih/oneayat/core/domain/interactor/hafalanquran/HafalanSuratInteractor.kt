@@ -11,8 +11,4 @@ class HafalanSuratInteractor(
 ): HafalanSuratUseCase {
     override fun getListAyat(nomorSurat: String): Flow<Resource<HafalanSuratModel>> =
         repository.getListAyat(nomorSurat)
-
-    override fun setToken(token: String) {
-        repository.setToken(token)
-    }
 }

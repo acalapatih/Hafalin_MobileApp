@@ -2,7 +2,6 @@ package com.acalapatih.oneayat.core.data.repositoryImpl.hafalanquran
 
 import com.acalapatih.oneayat.core.data.NetworkOnlyResource
 import com.acalapatih.oneayat.core.data.Resource
-import com.acalapatih.oneayat.core.data.source.local.LocalDataSource
 import com.acalapatih.oneayat.core.data.source.remote.RemoteDataSource
 import com.acalapatih.oneayat.core.data.source.remote.network.ApiResponse
 import com.acalapatih.oneayat.core.data.source.remote.response.PostSpeechToTextResponse
@@ -13,11 +12,7 @@ import okhttp3.RequestBody
 
 class SpeechToTextRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource
 ): SpeechToTextRepository {
-    override fun getToken(): String =
-        localDataSource.getToken()
-
     override fun postSpeechToText(
         requestBody: RequestBody
     ): Flow<Resource<SpeechToTextModel>> =

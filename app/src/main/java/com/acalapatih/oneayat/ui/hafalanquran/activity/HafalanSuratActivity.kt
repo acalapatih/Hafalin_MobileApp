@@ -18,7 +18,6 @@ import com.acalapatih.oneayat.ui.hafalanquran.adapter.HafalanSuratAdapter
 import com.acalapatih.oneayat.ui.hafalanquran.viewmodel.HafalanSuratViewModel
 import com.acalapatih.oneayat.BaseActivity
 import com.acalapatih.oneayat.R
-import com.acalapatih.oneayat.core.domain.model.hafalanquran.RequestTokenModel
 import com.acalapatih.oneayat.core.factory.SettingViewModelFactory
 import com.acalapatih.oneayat.core.data.source.local.preference.SettingPreferences
 import com.acalapatih.oneayat.ui.setting.SettingViewModel
@@ -85,29 +84,6 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
                     showLoading(false)
                     model.data?.let { data ->
                         getListAyat(data)
-                    }
-                }
-                is Resource.Error -> {
-                    showLoading(false)
-                    model.message?.let {
-                        println(it)
-                        showToast(
-                            it, Toast.LENGTH_SHORT
-                        )
-                    }
-                }
-            }
-        }
-
-        viewModel.requestToken.observe(this) { model ->
-            when (model) {
-                is Resource.Loading -> {
-                    showLoading(true)
-                }
-                is Resource.Success -> {
-                    showLoading(false)
-                    model.data?.let { data ->
-                        setToken(data)
                     }
                 }
                 is Resource.Error -> {
@@ -486,10 +462,6 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
                 rvHafalanAyat.adapter = hafalanSuratAdapter
             }
         }
-    }
-
-    private fun setToken(data: RequestTokenModel) {
-        viewModel.setToken(data.token)
     }
 
     private fun initListener() {
