@@ -58,31 +58,6 @@ val networkModule = module {
             .create(QuranApiService::class.java)
     }
 
-    single<TokenApiService> {
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .addHeader("Content-type", "application/x-www-form-urlencoded")
-                    .addHeader("Content-Length", "0")
-                    .addHeader("Ocp-Apim-Subscription-Key", SPEECH_SERVICE_SUBSCRIPTION_KEY)
-                    .build()
-                chain.proceed(request)
-            }
-            .build()
-
-        Retrofit.Builder()
-            .baseUrl(Const.TOKEN_API_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create(TokenApiService::class.java)
-    }
-
     single<SpeechApiService> {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
