@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_EFFDEE"
-    tools:context="com.acalapatih.oneayat.ui.onboarding.OnboardingActivity">
+    tools:context="com.acalapatih.hafalin.ui.onboarding.OnboardingActivity">
 
     <ImageView
         android:id="@+id/img_onboarding"

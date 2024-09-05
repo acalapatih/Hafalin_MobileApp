@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.acalapatih.oneayat'
+    namespace 'com.acalapatih.hafalin'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.acalapatih.oneayat"
+        applicationId "com.acalapatih.hafalin"
         minSdk 21
         targetSdk 35
         versionCode 1

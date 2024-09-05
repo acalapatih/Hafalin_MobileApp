@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OneAyat</string>
+    <string name="app_name">Hafalin</string>
     <string name="tv_nav_home">Beranda</string>
     <string name="tv_nav_quran">Al-Qur\'an</string>
     <string name="tv_nav_bookmark">Penanda</string>
@@ -7,7 +7,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_salam">Assalamu\'alaikum</string>
     <string name="tv_selamat_datang">Selamat datang di</string>
-    <string name="tv_oneayat">OneAyat</string>
+    <string name="tv_hafalin">Hafalin</string>
     <string name="tv_penanda">Penanda</string>
     <string name="tv_terakhir_dibaca">Terakhir Dibaca</string>
     <string name="tv_terakhir_dihafal">Terakhir Dihafal</string>
@@ -95,11 +95,11 @@
     <string name="tv_title_onboarding">Title Onboarding</string>
     <string name="tv_desc_onboarding">Lorem Ipsum Dolor Sit Amet</string>
     <string name="title_onboarding_1">Baca Al-Qur\'an</string>
-    <string name="description_onboarding_1">OneAyat menyediakan teks Al-Qur\'an secara utuh beserta terjemahan dan audio bacaannya yang dapat anda baca dan pelajari.</string>
+    <string name="description_onboarding_1">Hafalin menyediakan teks Al-Qur\'an secara utuh beserta terjemahan dan audio bacaannya yang dapat anda baca dan pelajari.</string>
     <string name="title_onboarding_2">Setoran Hafalan Al-Qur\'an</string>
-    <string name="description_onboarding_2">OneAyat menyediakan fitur Speech Recognition untuk setoran hafalan Al-Qur\'an dan hasil hafalan didapatkan secara instan.</string>
+    <string name="description_onboarding_2">Hafalin menggunakan Speech Recognition untuk setoran hafalan Al-Qur\'an dan hasil hafalan didapatkan secara instan.</string>
     <string name="title_onboarding_3">Status Hafalan</string>
-    <string name="description_onboarding_3">Dengan fitur One Day One Ayat anda dapat melihat bagaimana progres status hafalan Al-Qur\'an yang telah dilakukan.</string>
+    <string name="description_onboarding_3">Dengan fitur hafalan Satu Hari Satu Ayat anda dapat melihat bagaimana progres status hafalan Al-Qur\'an yang telah dilakukan.</string>
     <string name="tv_finish">Finish</string>
     <string name="tv_switch_theme">Ganti Warna Latar</string>
     <string name="desc_ic_light">Light Mode</string>

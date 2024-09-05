@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="@string/tv_oneayat"
+                android:text="@string/tv_hafalin"
                 android:textColor="@color/yellow_FEC200"
                 app:layout_constraintBottom_toBottomOf="@id/tv_selamat_datang"
                 app:layout_constraintStart_toEndOf="@id/tv_selamat_datang"

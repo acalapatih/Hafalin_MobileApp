@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="com.acalapatih.oneayat.ui.bacaquran.fragment.ListJuzFragment">
+        tools:context="com.acalapatih.hafalin.ui.bacaquran.fragment.ListJuzFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_juz"

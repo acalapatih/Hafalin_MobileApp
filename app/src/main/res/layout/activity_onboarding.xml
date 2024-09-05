@@ -29,6 +29,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/green_EFFDEE"
             app:tabBackground="@drawable/onboarding_viewpager_selector_green"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />
@@ -46,7 +47,6 @@
             android:text="@string/back"
             android:textAllCaps="true"
             android:textColor="@color/green_18392B" />
-
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next_step"
