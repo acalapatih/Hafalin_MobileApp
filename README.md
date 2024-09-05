@@ -9,10 +9,10 @@
 <br />
 <div align="center">
   <a href="https://github.com/acalapatih/OneAyat_mobileApp">
-    <img src="image/hafalin_logo.png" alt="Logo" width="200" height="200">
+    <img src="image/logo_hafalin.png" alt="Logo" width="200" height="200">
   </a>
 
-  <h1 align="center">One Ayat Mobile App</h3>
+  <h1 align="center">Hafalin Mobile App</h3>
 
   <p align="center">
     A great application that can enhance Quran memorization.
@@ -49,6 +49,8 @@
 OneAyat applies Speech To Text technology with the One Day One Ayat Method to facilitate independent Quran memorization submissions. Additionally, this application also provides the entire Quran text that can be read and saved for bookmarking purposes.
 
 ## Mock Up
+<img src="image/fitur_utama.png" alt="Quran Recitation Feature">
+
 ### Quran Recitation Feature
 <img src="image/baca_quran.png" alt="Quran Recitation Feature">
 
