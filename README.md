@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/acalapatih/OneAyat_mobileApp">
-    <img src="image/oneAyat_logo.png" alt="Logo" width="200" height="200">
+    <img src="image/hafalin_logo.png" alt="Logo" width="200" height="200">
   </a>
 
   <h1 align="center">One Ayat Mobile App</h3>
