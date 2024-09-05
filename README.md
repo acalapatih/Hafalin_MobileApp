@@ -49,7 +49,7 @@
 OneAyat applies Speech To Text technology with the One Day One Ayat Method to facilitate independent Quran memorization submissions. Additionally, this application also provides the entire Quran text that can be read and saved for bookmarking purposes.
 
 ## Mock Up
-<img src="image/fitur_utama.png" alt="Quran Recitation Feature">
+<img src="image/fitur_utama.png" alt="Main Feature">
 
 ### Quran Recitation Feature
 <img src="image/baca_quran.png" alt="Quran Recitation Feature">
