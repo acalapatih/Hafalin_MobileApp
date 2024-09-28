@@ -32,7 +32,7 @@ class ListSuratAdapter(
                 if (isDarkModeActive) {
                     icNomor.setImageResource(R.drawable.ic_nomor_white)
                 } else {
-                    icNomor.setImageResource(R.drawable.ic_nomor_green)
+                    icNomor.setImageResource(R.drawable.ic_nomor_blue)
                 }
             }
         }

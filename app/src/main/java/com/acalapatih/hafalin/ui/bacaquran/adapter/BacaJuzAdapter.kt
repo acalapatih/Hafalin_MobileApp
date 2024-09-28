@@ -53,8 +53,8 @@ class BacaJuzAdapter(
                     icAudio.setImageResource(R.drawable.ic_audio_white)
                     icNomor.setImageResource(R.drawable.ic_nomor_white)
                 } else {
-                    icAudio.setImageResource(R.drawable.ic_audio_green)
-                    icNomor.setImageResource(R.drawable.ic_nomor_green)
+                    icAudio.setImageResource(R.drawable.ic_audio_blue)
+                    icNomor.setImageResource(R.drawable.ic_nomor_blue)
                 }
             }
         }

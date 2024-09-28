@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_EFFDEE"
+    android:background="@color/blue_BAE4FA"
     tools:context="com.acalapatih.hafalin.ui.onboarding.OnboardingActivity">
 
     <ImageView

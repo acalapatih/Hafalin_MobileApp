@@ -26,7 +26,7 @@ class NotificationReceiver: BroadcastReceiver() {
 
         val builder = NotificationCompat.Builder(context, "Notification")
             .setContentIntent(pendingIntent)
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.ic_quran_blue)
             .setContentTitle("Sudahkah Kamu Setor Hafalan Hari Ini?")
             .setContentText("Lanjutkan hafalan Al-Qur'an mu minimal satu hari satu ayat, Hamasahh!!")
             .setAutoCancel(true)

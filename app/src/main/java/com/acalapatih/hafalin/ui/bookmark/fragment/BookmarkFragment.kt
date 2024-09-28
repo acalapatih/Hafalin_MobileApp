@@ -61,8 +61,8 @@ class BookmarkFragment : Fragment() {
                     icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_white)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    icTerakhirDibaca.setImageResource(R.drawable.ic_dibaca_green)
-                    icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_green)
+                    icTerakhirDibaca.setImageResource(R.drawable.ic_dibaca_blue)
+                    icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_blue)
                 }
             }
         }

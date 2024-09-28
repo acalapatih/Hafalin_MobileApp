@@ -56,10 +56,10 @@ class BacaSuratAdapter(
                     icNomor.setImageResource(R.drawable.ic_nomor_white)
                     icFavorit.setImageResource(R.drawable.ic_favorit_white)
                 } else {
-                    icAudio.setImageResource(R.drawable.ic_audio_green)
-                    icTandai.setImageResource(R.drawable.ic_tandai_green)
-                    icNomor.setImageResource(R.drawable.ic_nomor_green)
-                    icFavorit.setImageResource(R.drawable.ic_favorit_green)
+                    icAudio.setImageResource(R.drawable.ic_audio_blue)
+                    icTandai.setImageResource(R.drawable.ic_tandai_blue)
+                    icNomor.setImageResource(R.drawable.ic_nomor_blue)
+                    icFavorit.setImageResource(R.drawable.ic_favorit_blue)
                 }
             }
         }

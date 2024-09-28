@@ -148,8 +148,8 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                     cvAudioAyat.backgroundTintList = ContextCompat.getColorStateList(this@HafalanAyatActivity, R.color.blue_001C30)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    icBack.setImageResource(R.drawable.ic_back_green)
-                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    icBack.setImageResource(R.drawable.ic_back_blue)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_blue)
                     clHasilHafalan.setBackgroundResource(R.drawable.bg_hasil_hafalan_light)
                     cvAudioAyat.backgroundTintList = ContextCompat.getColorStateList(this@HafalanAyatActivity, R.color.white)
                 }

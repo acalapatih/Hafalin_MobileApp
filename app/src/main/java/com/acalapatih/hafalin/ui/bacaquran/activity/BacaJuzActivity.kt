@@ -64,8 +64,8 @@ class BacaJuzActivity : BaseActivity<ActivityBacaJuzBinding>() {
                     icBookmark.setImageResource(R.drawable.ic_bookmark_white)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    icBack.setImageResource(R.drawable.ic_back_green)
-                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    icBack.setImageResource(R.drawable.ic_back_blue)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_blue)
                 }
             }
         }
@@ -136,8 +136,8 @@ class BacaJuzActivity : BaseActivity<ActivityBacaJuzBinding>() {
                     rvAyat.adapter = bacaJuzAdapter
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    icBack.setImageResource(R.drawable.ic_back_green)
-                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    icBack.setImageResource(R.drawable.ic_back_blue)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_blue)
                     imgHeaderBacaQuran.setImageResource(R.drawable.bg_header_bacaquran_light)
                     bacaJuzAdapter = BacaJuzAdapter(
                         this@BacaJuzActivity,

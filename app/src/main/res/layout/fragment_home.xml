@@ -141,7 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/img_bacaquran_green"
+        android:src="@drawable/img_bacaquran_blue"
         app:layout_constraintStart_toStartOf="@id/cv_header_home"
         app:layout_constraintTop_toBottomOf="@id/cv_header_home" />
 
@@ -151,7 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
-        android:src="@drawable/img_hafalanquran_green"
+        android:src="@drawable/img_hafalanquran_blue"
         app:layout_constraintEnd_toEndOf="@id/cv_header_home"
         app:layout_constraintTop_toBottomOf="@id/cv_header_home" />
 
@@ -208,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:src="@drawable/ic_dibaca_green"
+                        android:src="@drawable/ic_dibaca_blue"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -265,7 +265,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
-                        android:src="@drawable/ic_dihafal_green"
+                        android:src="@drawable/ic_dihafal_blue"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

@@ -37,30 +37,30 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         when (intent.getStringExtra("action")) {
             "home" -> {
                 navController.navigate(R.id.navigation_home)
-                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_selected_green)
+                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_selected_blue)
                 menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
-                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_blue)
                 menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
             }
             "quran" -> {
                 navController.navigate(R.id.navigation_quran)
-                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_blue)
                 menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran_selected)
-                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_blue)
                 menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
             }
             "penanda" -> {
                 navController.navigate(R.id.navigation_bookmark)
-                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_blue)
                 menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
-                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_selected_green)
+                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_selected_blue)
                 menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
             }
             else -> {
                 navController.navigate(R.id.navigation_setting)
-                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_blue)
                 menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
-                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_blue)
                 menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting_selected)
             }
         }
@@ -68,24 +68,24 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    item.setIcon(R.drawable.ic_home_selected_green)
+                    item.setIcon(R.drawable.ic_home_selected_blue)
                     menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
-                    menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                    menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_blue)
                     menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
                     navController.navigate(R.id.navigation_home)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_quran -> {
                     item.setIcon(R.drawable.ic_quran_selected)
-                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
-                    menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_blue)
+                    menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_blue)
                     menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
                     navController.navigate(R.id.navigation_quran)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_bookmark -> {
-                    item.setIcon(R.drawable.ic_bookmark_selected_green)
-                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                    item.setIcon(R.drawable.ic_bookmark_selected_blue)
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_blue)
                     menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
                     menu.findItem(R.id.navigation_setting).setIcon(R.drawable.ic_setting)
                     navController.navigate(R.id.navigation_bookmark)
@@ -93,9 +93,9 @@ class HomeActivity: BaseActivity<ActivityHomeBinding>() {
                 }
                 R.id.navigation_setting -> {
                     item.setIcon(R.drawable.ic_setting_selected)
-                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_green)
+                    menu.findItem(R.id.navigation_home).setIcon(R.drawable.ic_home_blue)
                     menu.findItem(R.id.navigation_quran).setIcon(R.drawable.ic_quran)
-                    menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_green)
+                    menu.findItem(R.id.navigation_bookmark).setIcon(R.drawable.ic_bookmark_unselected_blue)
                     navController.navigate(R.id.navigation_setting)
                     return@setOnItemSelectedListener true
                 }

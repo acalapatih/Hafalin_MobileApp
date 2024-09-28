@@ -148,8 +148,8 @@ class AyatDisimpan : BaseActivity<ActivityAyatFavoritBinding>(), BacaSuratAdapte
                     }
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    icBack.setImageResource(R.drawable.ic_back_green)
-                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    icBack.setImageResource(R.drawable.ic_back_blue)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_blue)
                     bacaAyatAdapter = BacaSuratAdapter(
                         this@AyatDisimpan,
                         data.namaSurat,

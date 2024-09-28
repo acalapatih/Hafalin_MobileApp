@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_EFFDEE">
+    android:background="@color/blue_BAE4FA">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
@@ -19,7 +19,7 @@
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/green_EFFDEE">
+        android:background="@color/blue_BAE4FA">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/pageIndicator"
@@ -29,8 +29,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:backgroundTint="@color/green_EFFDEE"
-            app:tabBackground="@drawable/onboarding_viewpager_selector_green"
+            android:backgroundTint="@color/blue_BAE4FA"
+            app:tabBackground="@drawable/onboarding_viewpager_selector_blue"
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />
 
@@ -57,7 +57,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="30dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/btn_green_rounded_selector"
+            android:background="@drawable/btn_blue_rounded_selector"
             android:text="@string/next"
             android:textAllCaps="true"
             android:textColor="@color/white" />

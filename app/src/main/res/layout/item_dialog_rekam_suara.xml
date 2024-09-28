@@ -29,7 +29,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:contentDescription="@string/desc_ic_close"
-            android:src="@drawable/ic_close_green"
+            android:src="@drawable/ic_close_blue"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -54,9 +54,9 @@ class BookmarkActivity : BaseActivity<ActivityBookmarkBinding>() {
                     icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_white)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    icBack.setImageResource(R.drawable.ic_back_green)
-                    icTerakhirDibaca.setImageResource(R.drawable.ic_dibaca_green)
-                    icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_green)
+                    icBack.setImageResource(R.drawable.ic_back_blue)
+                    icTerakhirDibaca.setImageResource(R.drawable.ic_dibaca_blue)
+                    icAyatFavorit.setImageResource(R.drawable.ic_ayat_favorit_blue)
                 }
             }
         }

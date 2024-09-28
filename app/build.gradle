@@ -8,12 +8,13 @@ plugins {
 android {
     namespace 'com.acalapatih.hafalin'
     compileSdk 35
+    ndkVersion "27.1.12297006"
 
     defaultConfig {
         applicationId "com.acalapatih.hafalin"
         minSdk 21
         targetSdk 35
-        versionCode 1
+        versionCode 5
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,11 +25,19 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            ndk {
+                debugSymbolLevel "FULL"
+            }
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -89,7 +98,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     //Logging Interceptor
-    def okhttp_version = "4.10.0"
+    def okhttp_version = "4.11.0"
     //noinspection GradleDependency
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
@@ -108,4 +117,6 @@ dependencies {
     implementation 'org.apache.commons:commons-text:1.9'
 
     implementation 'com.google.cloud:google-cloud-speech:2.6.0'
+
+    implementation 'org.bouncycastle:bctls-jdk15on:1.70'
 }

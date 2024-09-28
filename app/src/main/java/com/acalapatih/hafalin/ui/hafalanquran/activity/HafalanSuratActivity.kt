@@ -60,8 +60,8 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
                     icBookmark.setImageResource(R.drawable.ic_bookmark_white)
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    icBack.setImageResource(R.drawable.ic_back_green)
-                    icBookmark.setImageResource(R.drawable.ic_bookmark_green)
+                    icBack.setImageResource(R.drawable.ic_back_blue)
+                    icBookmark.setImageResource(R.drawable.ic_bookmark_blue)
                 }
             }
         }

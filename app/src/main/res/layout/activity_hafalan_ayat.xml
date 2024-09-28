@@ -18,7 +18,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:contentDescription="@string/tv_back"
-            android:src="@drawable/ic_back_green"
+            android:src="@drawable/ic_back_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,7 +41,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:contentDescription="@string/tv_bookmark"
-            android:src="@drawable/ic_bookmark_green"
+            android:src="@drawable/ic_bookmark_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -263,7 +263,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:visibility="gone"
+            android:layout_marginTop="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -301,7 +301,7 @@
                         android:drawablePadding="5dp"
                         android:text="@string/tv_audio_ayat"
                         android:textSize="14sp"
-                        app:drawableLeftCompat="@drawable/ic_audio_green"
+                        app:drawableLeftCompat="@drawable/ic_audio_blue"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

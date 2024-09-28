@@ -18,6 +18,8 @@
     <color name="green_91C788">#91C788</color>
     <color name="green_DDFFBC">#DDFFBC</color>
     <color name="cream_FEFFDE">#FEFFDE</color>
+    <color name="blue_BAE4FA">#BAE4FA</color>
+    <color name="blue_4081BF">#4081BF</color>
 
     <!--    Dark Color-->
     <color name="black_040D12">#040D12</color>
@@ -25,6 +27,8 @@
     <color name="navy_001C30">#001C30</color>
     <color name="grey_54626F">#54626F</color>
     <color name="grey_D9D9D9">#D9D9D9</color>
+    <color name="blue_336799">#336799</color>
+    <color name="blue_4CC9F0">#4CC9F0</color>
     
     <color name="green_33B249">#33B249</color>
     <color name="green_ADFF2F">#ADFF2F</color>

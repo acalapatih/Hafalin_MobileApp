@@ -16,7 +16,7 @@
             android:id="@+id/ic_nomor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_nomor_green"
+            android:src="@drawable/ic_nomor_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/tv_info_surat"
             app:layout_constraintTop_toTopOf="@id/tv_surat"

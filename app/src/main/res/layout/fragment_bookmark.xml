@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:src="@drawable/ic_dibaca_green"
+        android:src="@drawable/ic_dibaca_blue"
         app:layout_constraintBottom_toTopOf="@id/line_terakhir_dibaca"
         app:layout_constraintStart_toStartOf="@id/cl_header_bookmark"
         app:layout_constraintTop_toBottomOf="@id/cl_header_bookmark" />
@@ -79,7 +79,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:contentDescription="@string/desc_ic_ayat_favorit"
-        android:src="@drawable/ic_ayat_favorit_green"
+        android:src="@drawable/ic_ayat_favorit_blue"
         app:layout_constraintStart_toStartOf="@id/cl_header_bookmark"
         app:layout_constraintTop_toBottomOf="@id/line_terakhir_dibaca" />
 

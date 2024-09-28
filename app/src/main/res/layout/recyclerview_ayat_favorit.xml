@@ -30,7 +30,7 @@
             android:id="@+id/ic_hapus_ayat_favorit"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:src="@drawable/ic_close_green"
+            android:src="@drawable/ic_close_blue"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="30dp"
             app:layout_constraintTop_toTopOf="@id/tv_label_ayat_favorit"
