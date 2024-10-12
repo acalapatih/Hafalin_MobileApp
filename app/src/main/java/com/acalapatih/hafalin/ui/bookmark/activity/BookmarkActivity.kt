@@ -107,7 +107,7 @@ class BookmarkActivity : BaseActivity<ActivityBookmarkBinding>() {
             icBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
-            onBackPressedDispatcher.addCallback {
+            onBackPressedDispatcher.addCallback(this@BookmarkActivity) {
                 finish()
             }
         }

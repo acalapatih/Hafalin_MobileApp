@@ -160,7 +160,7 @@ class BacaSuratActivity : BaseActivity<ActivityBacaSuratBinding>(), BacaSuratAda
             icBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
-            onBackPressedDispatcher.addCallback {
+            onBackPressedDispatcher.addCallback(this@BacaSuratActivity) {
                 finish()
             }
 

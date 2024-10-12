@@ -3,6 +3,7 @@ package com.acalapatih.hafalin.ui.bacaquran.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.window.OnBackInvokedCallback
 import androidx.activity.addCallback
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatDelegate
@@ -71,7 +72,7 @@ class BacaQuranActivity : BaseActivity<ActivityBacaQuranBinding>() {
             icBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
-            onBackPressedDispatcher.addCallback {
+            onBackPressedDispatcher.addCallback(this@BacaQuranActivity) {
                 finish()
             }
             icBookmark.setOnClickListener {

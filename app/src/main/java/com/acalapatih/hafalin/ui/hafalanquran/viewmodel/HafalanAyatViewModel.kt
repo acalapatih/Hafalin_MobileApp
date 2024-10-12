@@ -8,24 +8,18 @@ import androidx.lifecycle.viewModelScope
 import com.acalapatih.hafalin.core.data.Resource
 import com.acalapatih.hafalin.core.data.source.local.entity.*
 import com.acalapatih.hafalin.core.domain.model.hafalanquran.HafalanAyatModel
-import com.acalapatih.hafalin.core.domain.model.hafalanquran.SpeechToTextModel
 import com.acalapatih.hafalin.core.domain.repository.bookmark.AyatDihafalRepository
 import com.acalapatih.hafalin.core.domain.repository.bookmark.SuratDihafalRepository
 import com.acalapatih.hafalin.core.domain.usecase.hafalanquran.HafalanAyatUsecase
-import com.acalapatih.hafalin.core.domain.usecase.hafalanquran.SpeechToTextUsecase
 import kotlinx.coroutines.launch
 import okhttp3.RequestBody
 
 class HafalanAyatViewModel(
     application: Application,
     private val usecaseHafalanAyat: HafalanAyatUsecase,
-    private val usecaseSpeechToText: SpeechToTextUsecase,
 ): ViewModel() {
     private val _getAyat = MutableLiveData<Resource<HafalanAyatModel>>()
     val getAyat: LiveData<Resource<HafalanAyatModel>> get() = _getAyat
-
-    private val _postSpeechToText = MutableLiveData<Resource<SpeechToTextModel>>()
-    val postSpeechToText: LiveData<Resource<SpeechToTextModel>> get() = _postSpeechToText
 
     private val suratDihafalRepository: SuratDihafalRepository =
         SuratDihafalRepository(application)
@@ -37,14 +31,6 @@ class HafalanAyatViewModel(
         viewModelScope.launch {
             usecaseHafalanAyat.getAyat(nomorSurat, nomorAyat).collect{
                 _getAyat.value = it
-            }
-        }
-    }
-
-    fun postSpeechToText(requestBody: RequestBody) {
-        viewModelScope.launch {
-            usecaseSpeechToText.postSpeechToText(requestBody).collect{
-                _postSpeechToText.value = it
             }
         }
     }

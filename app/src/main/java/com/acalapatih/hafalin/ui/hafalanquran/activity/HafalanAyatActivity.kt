@@ -81,7 +81,7 @@ class HafalanAyatActivity : BaseActivity<ActivityHafalanAyatBinding>() {
                         Toast.LENGTH_SHORT
                     )
                     onBackPressedDispatcher.onBackPressed()
-                    onBackPressedDispatcher.addCallback {
+                    onBackPressedDispatcher.addCallback(this) {
                         finish()
                     }
                 }

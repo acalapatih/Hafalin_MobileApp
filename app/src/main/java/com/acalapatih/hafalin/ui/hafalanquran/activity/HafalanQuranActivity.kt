@@ -112,7 +112,7 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
                         Toast.LENGTH_SHORT
                     )
                     onBackPressedDispatcher.onBackPressed()
-                    onBackPressedDispatcher.addCallback {
+                    onBackPressedDispatcher.addCallback(this) {
                         finish()
                     }
                 }

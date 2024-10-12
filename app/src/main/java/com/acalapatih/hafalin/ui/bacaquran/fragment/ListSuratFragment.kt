@@ -97,16 +97,14 @@ class ListSuratFragment : Fragment(), ListSuratAdapter.OnUserClickListener {
         val listener = this
 
         settingViewModel.getThemeSetting().observe(viewLifecycleOwner) { isDarkModeActive: Boolean ->
-            with(binding) {
-                if (isDarkModeActive) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    listSuratAdapter = ListSuratAdapter(data.listSurat, isDarkModeActive, listener)
-                    binding.rvSurat.adapter = listSuratAdapter
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    listSuratAdapter = ListSuratAdapter(data.listSurat, isDarkModeActive, listener)
-                    binding.rvSurat.adapter = listSuratAdapter           
-                }
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                listSuratAdapter = ListSuratAdapter(data.listSurat, isDarkModeActive, listener)
+                binding.rvSurat.adapter = listSuratAdapter
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                listSuratAdapter = ListSuratAdapter(data.listSurat, isDarkModeActive, listener)
+                binding.rvSurat.adapter = listSuratAdapter
             }
         }
     }
