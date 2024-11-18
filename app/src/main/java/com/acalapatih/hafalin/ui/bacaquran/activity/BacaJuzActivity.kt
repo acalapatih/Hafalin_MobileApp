@@ -157,7 +157,7 @@ class BacaJuzActivity : BaseActivity<ActivityBacaJuzBinding>() {
             icBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
-            onBackPressedDispatcher.addCallback(this@BacaJuzActivity) {
+            onBackPressedDispatcher.addCallback {
                 finish()
             }
 

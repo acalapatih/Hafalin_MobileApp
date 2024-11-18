@@ -178,7 +178,7 @@ class HafalanQuranActivity : BaseActivity<ActivityHafalanQuranBinding>(), Hafala
             icBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
-            onBackPressedDispatcher.addCallback {
+            onBackPressedDispatcher.addCallback(this@HafalanQuranActivity) {
                 finish()
             }
 

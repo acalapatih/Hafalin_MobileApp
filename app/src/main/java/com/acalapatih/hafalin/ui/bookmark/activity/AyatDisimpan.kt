@@ -184,7 +184,7 @@ class AyatDisimpan : BaseActivity<ActivityAyatFavoritBinding>(), BacaSuratAdapte
             icBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
-            onBackPressedDispatcher.addCallback(this@AyatDisimpan) {
+            onBackPressedDispatcher.addCallback {
                 finish()
             }
 

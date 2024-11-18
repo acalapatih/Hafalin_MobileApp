@@ -469,7 +469,7 @@ class HafalanSuratActivity : BaseActivity<ActivityHafalanSuratBinding>(), Hafala
             icBack.setOnClickListener {
                 onBackPressedDispatcher.onBackPressed()
             }
-            onBackPressedDispatcher.addCallback(this@HafalanSuratActivity) {
+            onBackPressedDispatcher.addCallback {
                 finish()
             }
 

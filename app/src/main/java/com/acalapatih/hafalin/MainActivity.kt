@@ -40,13 +40,11 @@ class MainActivity : AppCompatActivity() {
             val sharedPreferences = getSharedPreferences("appPreferences", Context.MODE_PRIVATE)
             val isFirstRun = sharedPreferences.getBoolean("isFirstRun", true)
 
-            val intent: Intent = if (isFirstRun) {
+            if (isFirstRun) {
                 sharedPreferences.edit().putBoolean("isFirstRun", false).apply()
-                Intent(this@MainActivity, OnboardingActivity::class.java)
+                OnboardingActivity.start(this@MainActivity)
             } else {
-                Intent(this@MainActivity, HomeActivity::class.java).apply {
-                    putExtra("fragment", "home") // Assuming 'home' is a fragment tag
-                }
+                HomeActivity.start(this@MainActivity, "home")
             }
 
             startActivity(intent)
